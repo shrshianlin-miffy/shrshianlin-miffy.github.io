@@ -1,331 +1,423 @@
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Lin Shr-Shian Portfolio</title>
-<meta name="description" content="Portfolio of Lin Shr-Shian (Miffy): program analytics, social media and research.">
+<!doctype html><html lang="en"><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Classroom Observation Analytics</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;1,400&family=Karla:wght@300;400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700&display=swap">
 <style>
-/* Layout: content column on the left, a brick-red profile sidebar pinned on the right (stacks on top on phones). Single light look by choice, matching the reference palette. */
+/* Layout: score sheet beside a live matrix — the matrix is the summary, the roster is the detail */
 :root{
-  color-scheme:light;
-  --bg:#FFFFFF; --tile:#EEEEEE; --soft:#FCFCFC; --line:#E6E6E6;
-  --ink:#333333; --head:#111111; --brown:#401E07; --muted:#6E6662;
-  --brick:#A64E4E; --brick-ink:#FFFFFF;
-  --display:'Spectral',Georgia,'Times New Roman',serif;
-  --body:'Karla','Helvetica Neue',Arial,sans-serif;
+  --bg:#F4F2EC; --surface:#FFFDF8; --ink:#1B3329; --muted:#56655D; --line:#DDD8CB;
+  --accent:#C9952E; --green:#2F6B4A;
+  --q1:#CFE4D6; --q1ink:#1F5A3A; --q2:#F3E4C0; --q2ink:#7A5208;
+  --q3:#E1E6E2; --q3ink:#3E4A44; --q4:#F1D7CC; --q4ink:#8E3A20;
+  --sans:'Noto Sans TC',"PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+  --serif:'Noto Serif TC',"Songti TC",Georgia,serif;
 }
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#121A16; --surface:#1A2520; --ink:#E7EDE8; --muted:#A4B3AA; --line:#2E3D35;
+  --accent:#E0B456; --green:#7FC29C;
+  --q1:#1F3A2B; --q1ink:#9BD5B2; --q2:#3A3020; --q2ink:#E8C77A; --q3:#262E2A; --q3ink:#C2CCC6; --q4:#3B2620; --q4ink:#EDA88E;
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#121A16; --surface:#1A2520; --ink:#E7EDE8; --muted:#A4B3AA; --line:#2E3D35;
+  --accent:#E0B456; --green:#7FC29C;
+  --q1:#1F3A2B; --q1ink:#9BD5B2; --q2:#3A3020; --q2ink:#E8C77A; --q3:#262E2A; --q3ink:#C2CCC6; --q4:#3B2620; --q4ink:#EDA88E;
+  color-scheme:dark}
 *{box-sizing:border-box}
-body{background:var(--bg);color:var(--ink);font-family:var(--body);font-weight:300;font-size:16px;line-height:1.65;margin:0}
-a{color:var(--brick);text-underline-offset:3px}
-a:focus-visible,button:focus-visible{outline:3px solid var(--brown);outline-offset:3px;border-radius:4px}
-h1,h2,h3,h4{font-family:var(--display);font-weight:400;margin:0;line-height:1.2;text-wrap:balance}
-p{margin:0}
-strong{font-weight:600}
-
-.page{display:grid;grid-template-columns:minmax(0,1fr) 380px;min-height:100%}
-main{min-width:0;padding-block:32px 56px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:40px}
-.inner{max-width:820px;width:100%;margin:0 auto;display:flex;flex-direction:column;gap:32px}
-
-/* sidebar */
-aside{background:var(--brick);color:var(--brick-ink)}
-.side{position:sticky;top:0;min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:18px;padding-block:48px;padding-left:max(28px,env(safe-area-inset-left,0px));padding-right:max(28px,env(safe-area-inset-right,0px))}
-.side img{width:132px;height:132px;max-width:100%;border-radius:50%;object-fit:cover;object-position:50% 25%;border:3px solid rgba(255,255,255,.85)}
-.side h1{font-size:34px;color:var(--brick-ink)}
-.side .tagline{font-style:italic;font-size:17px;max-width:30ch}
-.side .bio{font-size:15px;max-width:34ch;opacity:.95}
-.side nav{display:flex;flex-direction:column;gap:4px;margin-top:6px}
-.side nav a{color:var(--brick-ink);text-decoration:none;font-size:17px;font-weight:400}
-.side nav a:hover{text-decoration:underline}
-.side .contact{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:8px;font-size:14px}
-.side .email{user-select:all}
-.copy{font:inherit;font-size:13px;font-weight:500;border:1px solid rgba(255,255,255,.7);background:transparent;color:var(--brick-ink);border-radius:999px;padding:2px 12px;cursor:pointer}
-.copy:hover{background:rgba(255,255,255,.14)}
-.side .skills{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;max-width:34ch}
-.side .skills span{font-size:12.5px;border:1px solid rgba(255,255,255,.45);border-radius:999px;padding:1px 10px}
-
-@media (max-width:920px){
-  .page{grid-template-columns:1fr}
-  aside{order:-1}
-  .side{position:static;min-height:0;padding-block:40px 36px}
-}
-
-/* category tiles */
-.tiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
-.tile{position:relative;display:grid;place-items:center;aspect-ratio:4/3;max-width:100%;border-radius:16px;overflow:hidden;background:var(--tile);text-decoration:none}
-.tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.32;filter:grayscale(.2)}
-.tile span{position:relative;font-family:var(--display);font-size:24px;color:var(--brown);text-align:center;padding:0 12px}
-.tile:hover span{text-decoration:underline;text-underline-offset:4px}
-@media (max-width:1100px){.tiles{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:520px){.tiles{grid-template-columns:1fr}.tile{aspect-ratio:16/7}}
-
-.band{height:48px;background:var(--brick);margin-left:calc(-1 * max(16px,env(safe-area-inset-left,0px)));margin-right:calc(-1 * max(16px,env(safe-area-inset-right,0px)))}
-.feature-title{font-family:var(--display);font-size:20px;color:var(--head);text-align:center}
-
-/* project cards */
-.section-head{display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center;padding-top:8px}
-.section-head h2{font-size:29px;color:var(--brown)}
-.section-head p{font-size:15px;color:var(--muted)}
-.card{background:var(--bg);border:1px solid var(--line);border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:18px}
-.meta{font-size:14px;color:var(--muted);font-weight:400}
-.card h3{font-size:25px;color:var(--head)}
-.zh{font-size:15px;color:var(--muted);font-weight:400;margin-top:-10px}
-.cols > div p + p{margin-top:8px}
-.question{font-family:var(--display);font-style:italic;font-size:19px;color:var(--brown);max-width:60ch}
-.metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));background:var(--soft);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.metric{padding:14px 12px;display:flex;flex-direction:column;gap:2px;min-width:0}
-.metric + .metric{border-left:1px solid var(--line)}
-.metric b{font-family:var(--display);font-weight:500;font-size:27px;color:var(--brown);font-variant-numeric:tabular-nums;line-height:1.2}
-.metric span{font-size:13px;color:var(--muted);font-weight:400}
-@media (max-width:620px){.metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.metric:nth-child(3){border-left:none}.metric:nth-child(n+3){border-top:1px solid var(--line)}}
-.cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
-.cols > div{min-width:0;display:flex;flex-direction:column;gap:8px}
-@media (max-width:700px){.cols{grid-template-columns:1fr}}
-.label{font-size:12px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--brick)}
-ol,ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px}
-.note{font-size:14px;color:var(--muted);max-width:70ch}
-.btn{align-self:flex-start;display:inline-flex;gap:8px;background:var(--brick);color:var(--brick-ink);text-decoration:none;font-weight:500;font-size:15px;padding:9px 18px;border-radius:999px}
-.btn:hover{filter:brightness(1.08)}
-
-.reel{display:grid;grid-template-columns:190px minmax(0,1fr);gap:28px;align-items:start}
-.reel .cover{position:relative;display:block;width:100%;max-width:190px;border-radius:12px;overflow:hidden}
-.reel .cover img{display:block;width:100%;height:auto;aspect-ratio:373/666;max-width:100%;object-fit:cover}
-.reel .cover::after{content:"▶";position:absolute;left:12px;bottom:12px;width:40px;height:40px;border-radius:50%;background:rgba(0,0,0,.55);color:#fff;display:grid;place-items:center;font-size:15px}
-.reel .body{display:flex;flex-direction:column;gap:18px;min-width:0}
-@media (max-width:640px){.reel{grid-template-columns:1fr}}
-blockquote{margin:0;padding:4px 0 4px 16px;border-left:3px solid var(--brick);font-family:var(--display);font-style:italic;font-size:18px;color:var(--brown)}
-.caption-tags{font-size:13px;color:var(--muted);font-weight:400}
-.bar{display:flex;flex-direction:column;gap:6px}
-.track{display:flex;height:12px;border-radius:6px;overflow:hidden;background:var(--tile)}
-.seg1{background:#C9B8B0}
-.seg2{background:var(--brick)}
-.legend{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
-
-footer{text-align:center;display:flex;flex-direction:column;gap:6px;padding-top:8px}
-footer h4{font-size:19px;color:var(--head)}
-footer p{font-size:13px;color:var(--muted)}
-@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.55;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:24px 48px}
+.wrap{max-width:1240px;margin:0 auto;display:flex;flex-direction:column;gap:20px}
+header{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px}
+h1{font-family:var(--serif);font-size:30px;margin:0;line-height:1.2;text-wrap:balance}
+.sub{color:var(--muted);margin:4px 0 0;font-size:14px}
+.controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+label.inline{font-size:13px;color:var(--muted);display:flex;align-items:center;gap:8px}
+select,input,textarea{font:inherit;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:7px 10px}
+textarea{width:100%;min-height:64px;resize:vertical}
+button{font:inherit;cursor:pointer;border-radius:8px;border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:7px 14px}
+button.primary{background:var(--green);border-color:var(--green);color:var(--surface);font-weight:700}
+button.danger{color:var(--q4ink);border-color:var(--q4ink)}
+button:focus-visible,select:focus-visible,input:focus-visible,textarea:focus-visible,.seg input:focus-visible+span{outline:3px solid var(--accent);outline-offset:2px}
+.status{font-size:13px;color:var(--muted)}
+.grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:20px;align-items:start}
+@media (max-width:900px){.grid{grid-template-columns:minmax(0,1fr)}}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;min-width:0}
+.panel h2{font-size:16px;margin:0 0 12px;letter-spacing:.02em}
+.counts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-bottom:14px}
+.count{border-radius:10px;padding:8px 10px}
+.count b{display:block;font-size:22px;font-variant-numeric:tabular-nums;line-height:1.1}
+.count span{font-size:12px;font-weight:700}
+@media (max-width:520px){.counts{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.q1{background:var(--q1);color:var(--q1ink)}.q2{background:var(--q2);color:var(--q2ink)}
+.q3{background:var(--q3);color:var(--q3ink)}.q4{background:var(--q4);color:var(--q4ink)}
+svg{display:block;width:100%;height:auto}
+.roster{display:flex;flex-direction:column}
+.row{display:grid;grid-template-columns:minmax(0,1fr) auto auto auto;gap:10px;align-items:center;padding:10px 4px;border-top:1px solid var(--line);cursor:pointer;border-radius:6px}
+.row:first-child{border-top:none}
+.row:hover{background:var(--bg)}
+.row .who b{display:block}
+.row .who small{color:var(--muted)}
+.num{font-variant-numeric:tabular-nums;font-weight:700;text-align:right;min-width:2.6em}
+.numlab{font-size:11px;color:var(--muted);text-align:right}
+.pill{font-size:12px;font-weight:700;border-radius:999px;padding:3px 10px;white-space:nowrap}
+.trend{font-size:12px;color:var(--muted)}
+.head{display:grid;grid-template-columns:minmax(0,1fr) auto auto auto;gap:10px;padding:0 4px 6px;font-size:12px;color:var(--muted)}
+.rubric{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media (max-width:700px){.rubric{grid-template-columns:1fr}}
+.rubric ol{margin:0;padding-left:20px}
+.rubric li{margin:4px 0}
+.note{font-size:13px;color:var(--muted)}
+.empty{padding:20px 4px;color:var(--muted)}
+/* editor */
+.overlay{position:fixed;inset:0;background:rgba(10,20,15,.45);display:flex;justify-content:center;align-items:flex-start;overflow:auto;padding:max(24px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) 24px max(16px,env(safe-area-inset-left,0px));z-index:20}
+.sheet{background:var(--surface);border-radius:16px;max-width:720px;width:100%;padding:22px;display:flex;flex-direction:column;gap:16px;border:1px solid var(--line)}
+.sheet h3{margin:0;font-family:var(--serif);font-size:22px}
+.fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+@media (max-width:520px){.fields{grid-template-columns:1fr}}
+.fields label{display:flex;flex-direction:column;gap:4px;font-size:13px;color:var(--muted)}
+.fields input{width:100%}
+fieldset{border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:0;display:flex;flex-direction:column;gap:10px}
+legend{font-weight:700;padding:0 6px;font-size:14px}
+.ind{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px}
+.ind .t{min-width:0;flex:1 1 220px}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden}
+.seg label{cursor:pointer}
+.seg input{position:absolute;opacity:0;pointer-events:none}
+.seg span{display:block;padding:5px 12px;font-size:13px}
+.seg input:checked+span{background:var(--green);color:var(--surface);font-weight:700}
+.total{font-size:13px;color:var(--muted);text-align:right}
+.actions{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:center}
+.actions .r{display:flex;gap:10px;margin-left:auto}
+.err{color:var(--q4ink);font-size:13px}
+.chip-label{font:700 12px var(--sans)}
+.tablewrap{overflow-x:auto}
+table.cmp{border-collapse:collapse;width:100%;min-width:520px;font-variant-numeric:tabular-nums}
+table.cmp th,table.cmp td{padding:7px 10px;border-bottom:1px solid var(--line);text-align:right;font-size:14px}
+table.cmp th:first-child,table.cmp td:first-child{text-align:left}
+table.cmp thead th{font-size:12px;color:var(--muted);font-weight:700}
+table.cmp tr.tot td{font-weight:700;border-top:2px solid var(--ink)}
+table.cmp td.low{color:var(--q4ink);font-weight:700}
+.up{color:var(--green)}.down{color:var(--q4ink)}
+.pairs{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:16px}
+.pair{border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.pair b{display:block;font-size:13px;margin-bottom:6px}
+.pair .big{font-size:26px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1.1}
+.pair small{color:var(--muted);font-size:12px}
+@media (prefers-reduced-motion:no-preference){.dot{transition:transform .25s ease}}
 </style>
-</head>
-<body>
 
-<div class="page">
-  <main>
-    <div class="inner">
-      <nav class="tiles" aria-label="Sections">
-        <a class="tile" href="#analytics"><span>Program Analytics</span></a>
-        <a class="tile" href="#web"><span>Web</span></a>
-        <a class="tile" href="#social"><img src="assets/reel-cover.jpg" alt=""><span>Video</span></a>
-        <a class="tile" href="#research"><span>Research</span></a>
-      </nav>
+<div class="wrap">
+  <header>
+    <div>
+      <h1>Classroom Observation Analytics</h1>
+      <p class="sub">Fulbright Taiwan English Teaching Assistants, New Taipei City. Consultants' written classroom-observation feedback is coded with an 8-indicator, 3-level rubric, plotted on a performance matrix and compared across semesters. Data: Fall 2025 (14), Spring 2026 (14), Fall 2026 (11). Demo version — any edits stay in your own browser.</p>
     </div>
-
-    <div class="band" aria-hidden="true"></div>
-
-    <div class="inner">
-      <p class="feature-title">Featured Work</p>
-
-      <div class="section-head" id="analytics"><h2>Program Analytics</h2><p>Turning feedback into decisions</p></div>
-
-      <article class="card">
-        <p class="meta">Fulbright Taiwan • New Taipei City • Fall 2025 – Fall 2026</p>
-        <h3>Classroom Observation Analytics</h3>
-        <p class="question">Which teaching skills should our training focus on, and are teachers improving between semesters?</p>
-        <div class="metrics">
-          <div class="metric"><b>39</b><span>observation reports coded</span></div>
-          <div class="metric"><b>8</b><span>rubric indicators, 3 levels</span></div>
-          <div class="metric"><b>14</b><span>teachers compared across two semesters</span></div>
-          <div class="metric"><b>7 / 6 / 1</b><span>improved / unchanged / declined</span></div>
-        </div>
-        <div class="cols">
-          <div>
-            <span class="label">Method</span>
-            <ol>
-              <li>Designed a rubric with two axes, lesson design and student engagement, each built from 4 indicators.</li>
-              <li>Coded consultants' written observation reports into scores, using AI-assisted first-pass coding and reviewing every score by hand.</li>
-              <li>Built a spreadsheet with formulas for semester averages, quadrant counts and a paired comparison of the same teachers.</li>
-              <li>Built an interactive dashboard that places each teacher in a 2×2 performance matrix.</li>
-            </ol>
-          </div>
-          <div>
-            <span class="label">Findings</span>
-            <ul>
-              <li><strong>Clear instructions</strong> was the weakest indicator in all three semesters (2.50, 2.43 and 2.00 out of 3).</li>
-              <li>For the 14 teachers observed twice, the average total score rose by 0.86 points out of 24. Three of the six unchanged teachers already had full marks.</li>
-              <li>Student engagement rose more than lesson design (+0.57 vs +0.29 out of 12).</li>
-            </ul>
-            <p class="note">Small sample, coded from qualitative feedback. I report these as trends, not statistically significant effects.</p>
-          </div>
-        </div>
-        <a class="btn" href="dashboard/" target="_blank" rel="noopener">Open the dashboard ↗</a>
-        <p class="note">The public dashboard uses codes (ETA A, ETA B…) in place of teacher names, and leaves out schools and consultants' comments.</p>
-      </article>
-
-      <article class="card">
-        <p class="meta">Ministry of Education × Fulbright Taiwan • July 2026</p>
-        <h3>Taiwan Global Pathfinders: Measuring Student Growth</h3>
-        <p class="question">After a study tour to Silicon Valley, how much did students grow, and did students with weaker English benefit as much as the rest?</p>
-        <div class="metrics">
-          <div class="metric"><b>18</b><span>written reflections analyzed</span></div>
-          <div class="metric"><b>10</b><span>growth dimensions scored 0–3</span></div>
-          <div class="metric"><b>40</b><span>suggestions grouped into 10 themes</span></div>
-          <div class="metric"><b>4.25 vs 4.30</b><span>growth, weaker vs stronger English (of 5)</span></div>
-        </div>
-        <div class="cols">
-          <div>
-            <span class="label">What I did</span>
-            <p>I coordinated the program, including itineraries and logistics for visits to NVIDIA, Stanford and NATEA. Afterwards I read every student reflection, scored each one on 10 growth dimensions, grouped their improvement suggestions by theme, and compared students by English level.</p>
-          </div>
-          <div>
-            <span class="label">Findings</span>
-            <ul>
-              <li>Highest growth: technology outlook and sustainability awareness (2.89 of 3). Lowest: independence (2.00).</li>
-              <li>English level did not decide how much students grew: a 0.05-point gap between groups of 8 and 10.</li>
-              <li>Top requests for next year, 7 mentions each: more exchange with local students, and English preparation before departure.</li>
-            </ul>
-          </div>
-        </div>
-        <p class="note">The full report contains student names and quotes, so it is not posted publicly.</p>
-      </article>
-
-      <div class="section-head" id="web"><h2>Web</h2><p>Resources I built for the teachers I support</p></div>
-
-      <article class="card">
-        <p class="meta">Fulbright Taiwan • New Taipei City • 2026</p>
-        <h3>New Taipei ETA Guide</h3>
-        <p class="question">Where can a new English Teaching Assistant find the rules, dates and local know-how for their first year, in one place?</p>
-        <div class="cols">
-          <div>
-            <span class="label">What it covers</span>
-            <ul>
-              <li>An interactive map of New Taipei districts and partner schools</li>
-              <li>Leave, reimbursement, service hours and program rules</li>
-              <li>A semester calendar, hotlines and emergency numbers</li>
-              <li>Local food, religion and everyday-life tips</li>
-            </ul>
-          </div>
-          <div>
-            <span class="label">Format</span>
-            <p>A bilingual English and Chinese website for the ETAs placed in New Taipei, with a switch between the two languages and a live weather panel.</p>
-          </div>
-        </div>
-        <a class="btn" href="ntp/" target="_blank" rel="noopener">Open the guide ↗</a>
-        <p class="note">This public copy leaves out staff contact details.</p>
-      </article>
-
-      <div class="section-head" id="social"><h2>Video</h2><p>Short-form content for Fulbright Taiwan</p></div>
-
-      <article class="card">
-        <div class="reel">
-          <a class="cover" href="https://www.instagram.com/reel/DdQ0jlZvrUF/" target="_blank" rel="noopener" aria-label="Watch the Reel on Instagram">
-            <img src="assets/reel-cover.jpg" alt="Students in a meeting room at NVIDIA, frame from the Reel">
-          </a>
-          <div class="body">
-            <p class="meta">@fulbrighttaiwan_teachintw • September 14, 2026</p>
-            <h3>Taiwan Global Pathfinders Recap Reel</h3>
-            <p>I edited this Reel and wrote its caption for Fulbright Taiwan's Teach in Taiwan account, to recap the Silicon Valley study tour I coordinated.</p>
-            <div class="bar-wrap" style="display:flex;flex-direction:column;gap:8px">
-              <span class="label">Caption</span>
-              <blockquote>Real-world impact starts far beyond the classroom.</blockquote>
-              <p class="note">The caption walks through the tour's stops, from AI trends with NVIDIA leadership and research at Stanford and ITRI International to entrepreneurship with NATEA and Startup Island Taiwan, and closes by thanking educators, partners and students.</p>
-              <p class="caption-tags">#FulbrightTaiwan #MOE #TaiwanGlobalPathfinders #InternationalEducation #青年百億海外圓夢計畫</p>
-            </div>
-            <div class="metrics">
-              <div class="metric"><b>2,953</b><span>views</span></div>
-              <div class="metric"><b>1,917</b><span>accounts reached</span></div>
-              <div class="metric"><b>68</b><span>likes</span></div>
-              <div class="metric"><b>28</b><span>shares and reposts</span></div>
-            </div>
-            <div class="bar" role="img" aria-label="Viewers: 34.2% followers, 65.8% non-followers">
-              <span class="label">Who watched</span>
-              <div class="track"><div class="seg1" style="width:34.2%"></div><div class="seg2" style="width:65.8%"></div></div>
-              <div class="legend"><span>Followers 34.2%</span><span>Non-followers 65.8%</span></div>
-            </div>
-            <div class="cols">
-              <div>
-                <span class="label">Audience</span>
-                <p>84.1% Taiwan and 14.1% United States; 51.7% aged 18–24 and 31% aged 25–34. The Reel brought 73 profile visits and 8 new follows.</p>
-              </div>
-              <div>
-                <span class="label">What I learned</span>
-                <p>Share and repost rates were above the account's typical range, so the content travelled. But the skip rate was 80.2% and average watch time was 6 seconds, so my next edit will put the strongest shot in the first two seconds.</p>
-              </div>
-            </div>
-            <a href="https://www.instagram.com/reel/DdQ0jlZvrUF/" target="_blank" rel="noopener">Watch on Instagram ↗</a>
-          </div>
-        </div>
-      </article>
-
-      <div class="section-head" id="research"><h2>Research</h2><p>Undergraduate research, Tamkang University</p></div>
-
-      <article class="card">
-        <p class="meta">National Science and Technology Council (NSTC) • Jul 2023 – Feb 2024</p>
-        <h3>Nostalgia after the American Dream: Diasporic Identity of Immigrants in the Film <em>Minari</em></h3>
-        <p class="zh">美國夢後的鄉愁：電影《夢想之地》移民者的離散身分認同</p>
-        <p>Competitively funded NSTC undergraduate research project (No. 112-2813-C-032-023-H), conducted independently under the supervision of Assoc. Prof. I-Fen Wu, Department of English, Tamkang University. Before this project I was a research assistant on Prof. Wu's NSTC-funded faculty project on gender politics in the Taiwanese film <em>As We Like It</em>.</p>
-        <div class="cols">
-          <div>
-            <span class="label">Abstract</span>
-            <p>Diaspora most often arises among immigrant, exiled and refugee communities. When these groups feel out of place in a new country yet long for a homeland they cannot return to, that in-between state gives rise to a diasporic culture, and with it the work of negotiating identity. In the twentieth century, the American Dream led many to believe that hard work could bring a better life in the United States than at home, and people of many backgrounds, including Koreans, emigrated. The Dream did not bring them only success; it also confronted them with questions of diaspora and identity.</p>
-            <p>This study uses the film <em>Minari</em> (2020) to examine the diasporic identity of immigrants who followed the American Dream in the 1980s, in three stages: how political, cultural and economic forces planted the Dream; how Korean immigrants pieced together a sense of self under diasporic culture; and a close reading of the film itself.</p>
-          </div>
-          <div>
-            <span class="label">Reading the film through</span>
-            <ul>
-              <li>Christian imagery and the immigrant's state of mind</li>
-              <li>Language and identity</li>
-              <li>Food as a way of building identity</li>
-              <li>The meaning of minari, the water celery the family plants</li>
-            </ul>
-            <span class="label">Keywords</span>
-            <p>American Dream · diasporic culture · identity · <em>Minari</em></p>
-          </div>
-        </div>
-        <a class="btn" href="assets/nstc-report-minari.pdf" target="_blank" rel="noopener">Read the full report (PDF, in Chinese) ↗</a>
-      </article>
-
-      <footer>
-        <h4>Get in touch: miffy.5928@gmail.com</h4>
-        <p>Data on this page was collected in my own work at Fulbright Taiwan. Figures as of October 2026.</p>
-      </footer>
+    <div class="controls">
+      <label class="inline" for="term">Semester
+        <select id="term"></select>
+      </label>
+      <input id="anon" type="checkbox" hidden>
+      <button id="copyBtn" type="button">Copy table</button>
+      <button id="resetBtn" type="button">Reset data</button>
+      <button id="addBtn" class="primary" type="button">Add observation</button>
     </div>
-  </main>
+  </header>
+  <p id="status" class="status">Loading observations…</p>
 
-  <aside>
-    <div class="side">
-      <img src="assets/lin-shr-shian.jpg" alt="Portrait of Lin Shr-Shian">
-      <h1>Lin Shr-Shian</h1>
-      <p class="tagline">Turning program feedback into data, and stories into content.</p>
-      <p class="bio">Program Coordinator at Fulbright Taiwan, supporting American English Teaching Assistants in New Taipei City. B.A. English and B.B.A. International Business, Tamkang University.</p>
-      <nav aria-label="Main">
-        <a href="#analytics">Program Analytics</a>
-        <a href="#web">Web</a>
-        <a href="#social">Video</a>
-        <a href="#research">Research</a>
-      </nav>
-      <div class="skills" aria-label="Skills"><span>Excel / Google Sheets</span><span>Rubric design</span><span>Instagram Insights</span><span>Premiere Pro</span><span>English · Mandarin</span></div>
-      <div class="contact">
-        <span class="email" id="email">miffy.5928@gmail.com</span>
-        <button class="copy" id="copyEmail" type="button">Copy email</button>
+  <div class="grid">
+    <section class="panel" aria-labelledby="mxTitle">
+      <h2 id="mxTitle">Teaching Performance Matrix</h2>
+      <div class="counts" id="counts"></div>
+      <div id="chart"></div>
+      <p class="note">Each axis is the total of 4 indicators (4–12); 8 or above counts as high. Larger dots with a number mean several ETAs share that score. Click a single dot to view or edit it.</p>
+    </section>
+    <section class="panel" aria-labelledby="rsTitle">
+      <h2 id="rsTitle">ETA Roster</h2>
+      <div class="head"><span>ETA · School</span><span class="numlab">Design</span><span class="numlab">Engage</span><span>Quadrant</span></div>
+      <div class="roster" id="roster"><p class="empty">Observations will appear here once loaded.</p></div>
+    </section>
+  </div>
+
+  <section class="panel" aria-labelledby="cmpTitle">
+    <h2 id="cmpTitle">Semester Comparison</h2>
+    <div class="tablewrap"><table class="cmp" id="cmpTable"></table></div>
+    <div id="pairs" class="pairs"></div>
+    <p class="note">Indicator averages are on a 1–3 scale. "Same ETAs" compares only ETAs observed in both semesters. The sample is small and scores are coded from qualitative feedback, so differences should be read as trends, not statistically significant results.</p>
+  </section>
+
+  <section class="panel" aria-labelledby="rbTitle">
+    <h2 id="rbTitle">Scoring Rubric</h2>
+    <div class="rubric">
+      <div>
+        <b>X-axis | Lesson Design</b>
+        <ol id="rubricD"></ol>
+      </div>
+      <div>
+        <b>Y-axis | Student Engagement</b>
+        <ol id="rubricE"></ol>
       </div>
     </div>
-  </aside>
+    <p class="note">Each indicator: 1 = not met, 2 = partly met, 3 = met. Indicators map to the consultant observation form's dimensions: planning and implementing instruction, learning environment, language use, and assessment.</p>
+  </section>
+</div>
+
+<div class="overlay" id="overlay" hidden>
+  <form class="sheet" id="form" novalidate>
+    <h3 id="formTitle">Add observation</h3>
+    <div class="fields">
+      <label for="f_name">ETA name<input id="f_name" required></label>
+      <label for="f_term">Semester<input id="f_term" list="termList" placeholder="e.g. Spring 2027" required></label>
+      <label for="f_school">School<input id="f_school"></label>
+      <label for="f_grade">Grade<input id="f_grade"></label>
+      <label for="f_date">Observation date<input id="f_date" type="date"></label>
+    </div>
+    <datalist id="termList"></datalist>
+    <fieldset id="fsD"><legend>Lesson Design</legend></fieldset>
+    <fieldset id="fsE"><legend>Student Engagement</legend></fieldset>
+    <p class="total" id="liveTotal"></p>
+    <div id="aiBox" class="panel" hidden style="padding:12px 14px">
+      <b style="font-size:13px">Suggested score rationale from consultant feedback (review before saving)</b>
+      <ul id="aiReasons" class="note" style="margin:6px 0 0;padding-left:18px"></ul>
+    </div>
+    <label for="f_note" style="display:flex;flex-direction:column;gap:4px;font-size:13px;color:var(--muted)">Notes (key consultant feedback)<textarea id="f_note"></textarea></label>
+    <p class="err" id="formErr" hidden></p>
+    <div class="actions">
+      <button type="button" class="danger" id="delBtn" hidden>Delete</button>
+      <span id="delConfirm" hidden><span class="err">Delete this record?</span> <button type="button" class="danger" id="delYes">Delete</button> <button type="button" id="delNo">Cancel</button></span>
+      <div class="r">
+        <button type="button" id="cancelBtn">Cancel</button>
+        <button type="submit" class="primary" id="saveBtn">Save</button>
+      </div>
+    </div>
+  </form>
 </div>
 
 <script>
 (function(){
-  var b=document.getElementById('copyEmail'),e=document.getElementById('email');
-  b.addEventListener('click',function(){
-    var t=e.textContent.trim();
-    function sel(){var r=document.createRange();r.selectNodeContents(e);var s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent='Selected';}
-    try{navigator.clipboard.writeText(t).then(function(){b.textContent='Copied';},sel);}catch(x){sel();}
-    setTimeout(function(){b.textContent='Copy email';},2000);
-  });
+const D=[['d1','Clear, specific objectives (SWBAT)'],['d2','Activities aligned with objectives'],['d3','Difficulty fits students\' level'],['d4','Assessment or student output']];
+const E=[['e1','Every student gets to participate'],['e2','Enough student talk and output time'],['e3','Clear instructions students understand'],['e4','Friendly, supportive atmosphere']];
+const Q={1:['① Model teaching','q1'],2:['② Engaging, design needs work','q2'],3:['③ Strong design, low engagement','q3'],4:['④ Needs focused support','q4']};
+const LEVEL=['Not met','Partly','Met'];
+const SEED=[{"name": "ETA E", "term": "Fall 2026", "school": "", "grade": "Grade 6", "date": "2026-10-08", "scores": {"d1": 3, "d2": 3, "d3": 3, "d4": 2, "e1": 3, "e2": 3, "e3": 2, "e4": 3}, "note": "", "updatedAt": "2026-10-22T00:40:00Z", "id": "Fall-2026-E"}, {"name": "ETA F", "term": "Fall 2026", "school": "", "grade": "Grade 3–4", "date": "2026-10-21", "scores": {"d1": 2, "d2": 2, "d3": 1, "d4": 1, "e1": 1, "e2": 1, "e3": 2, "e4": 2}, "note": "", "updatedAt": "2026-10-22T00:40:00Z", "id": "Fall-2026-F"}, {"name": "ETA G", "term": "Fall 2026", "school": "", "grade": "Grade 5", "date": "2026-10-16", "scores": {"d1": 3, "d2": 3, "d3": 2, "d4": 2, "e1": 2, "e2": 1, "e3": 2, "e4": 2}, "note": "", "updatedAt": "2026-10-22T00:40:00Z", "id": "Fall-2026-G"}, {"name": "ETA H", "term": "Fall 2026", "school": "", "grade": "Grade 2", "date": "2026-09-30", "scores": {"d1": 3, "d2": 3, "d3": 3, "d4": 3, "e1": 3, "e2": 3, "e3": 3, "e4": 2}, "note": "", "updatedAt": "2026-10-22T00:40:00Z", "id": "Fall-2026-H"}, {"name": "ETA I", "term": "Fall 2026", "school": "", "grade": "Grade 4", "date": "2026-09-30", "scores": {"d1": 2, "d2": 2, "d3": 2, "d4": 1, "e1": 3, "e2": 2, "e3": 2, "e4": 3}, "note": "", "updatedAt": "2026-10-22T00:40:00Z", "id": "Fall-2026-I"}, {"name": "ETA L", "term": "Fall 2026", "school": "", "grade": "Grade 6", "date": "2026-10-05", "scores": {"d1": 3, "d2": 3, "d3": 3, "d4": 3, "e1": 2, "e2": 3, "e3": 2, "e4": 3}, "note": "", "updatedAt": "2026-10-22T00:40:00Z", "id": "Fall-2026-L"}, {"name": "ETA M", "term": "Fall 2026", "school": "", "grade": "Grade 1", "date": "2026-10-06", "scores": {"d1": 3, "d2": 3, "d3": 3, "d4": 3, "e1": 3, "e2": 3, "e3": 3, "e4": 3}, "note": "", "updatedAt": "2026-10-22T00:40:00Z", "id": "Fall-2026-M"}, {"name": "ETA O", "term": "Fall 2026", "school": "", "grade": "Grade 5–6", "date": "2026-10-07", "scores": {"d1": 2, "d2": 1, "d3": 2, "d4": 2, "e1": 2, "e2": 2, "e3": 1, "e4": 2}, "note": "", "updatedAt": "2026-10-22T00:40:00Z", "id": "Fall-2026-O"}, {"name": "ETA R", "term": "Fall 2026", "school": "", "grade": "Grade 7", "date": "2026-10-02", "scores": {"d1": 3, "d2": 3, "d3": 2, "d4": 2, "e1": 1, "e2": 2, "e3": 2, "e4": 2}, "note": "", "updatedAt": "2026-10-22T00:40:00Z", "id": "Fall-2026-R"}, {"name": "ETA T", "term": "Fall 2026", "school": "", "grade": "Grade 5–6", "date": "2026-10-06", "scores": {"d1": 3, "d2": 2, "d3": 2, "d4": 3, "e1": 2, "e2": 2, "e3": 2, "e4": 3}, "note": "", "updatedAt": "2026-10-22T00:40:00Z", "id": "Fall-2026-T"}, {"name": "ETA W", "term": "Fall 2026", "school": "", "grade": "Grade 5", "date": "2026-10-15", "scores": {"d1": 2, "d2": 1, "d3": 2, "d4": 2, "e1": 2, "e2": 1, "e3": 1, "e4": 2}, "note": "", "updatedAt": "2026-10-22T00:40:00Z", "id": "Fall-2026-W"}, {"name": "ETA S", "term": "Fall 2025", "school": "", "grade": "Grade 5–6", "date": "2025-10-03", "scores": {"d1": 2, "d2": 2, "d3": 2, "d4": 2, "e1": 1, "e2": 1, "e3": 2, "e4": 2}, "note": "", "updatedAt": "2026-10-25T13:00:00Z", "id": "Fall-2025-S"}, {"name": "ETA V", "term": "Fall 2025", "school": "", "grade": "Grade 2", "date": "2025-10-08", "scores": {"d1": 3, "d2": 3, "d3": 3, "d4": 3, "e1": 2, "e2": 2, "e3": 3, "e4": 3}, "note": "", "updatedAt": "2026-10-25T13:00:00Z", "id": "Fall-2025-V"}, {"name": "ETA D", "term": "Fall 2025", "school": "", "grade": "Grade 5–6", "date": "2025-10-09", "scores": {"d1": 3, "d2": 3, "d3": 3, "d4": 2, "e1": 2, "e2": 2, "e3": 3, "e4": 3}, "note": "", "updatedAt": "2026-10-25T13:00:00Z", "id": "Fall-2025-D"}, {"name": "ETA A", "term": "Fall 2025", "school": "", "grade": "Grade 5", "date": "2025-10-14", "scores": {"d1": 3, "d2": 3, "d3": 3, "d4": 2, "e1": 3, "e2": 3, "e3": 3, "e4": 3}, "note": "", "updatedAt": "2026-10-25T13:00:00Z", "id": "Fall-2025-A"}, {"name": "ETA E", "term": "Fall 2025", "school": "", "grade": "Grade 5–6", "date": "2025-10-18", "scores": {"d1": 3, "d2": 3, "d3": 3, "d4": 3, "e1": 3, "e2": 3, "e3": 3, "e4": 3}, "note": "", "updatedAt": "2026-10-25T13:00:00Z", "id": "Fall-2025-E"}, {"name": "ETA I", "term": "Fall 2025", "school": "", "grade": "Grade 1", "date": "2025-10-21", "scores": {"d1": 3, "d2": 3, "d3": 3, "d4": 3, "e1": 3, "e2": 3, "e3": 3, "e4": 3}, "note": "", "updatedAt": "2026-10-25T13:00:00Z", "id": "Fall-2025-I"}, {"name": "ETA Q", "term": "Fall 2025", "school": "", "grade": "Grade 3–4", "date": "2025-10-27", "scores": {"d1": 3, "d2": 3, "d3": 2, "d4": 2, "e1": 3, "e2": 3, "e3": 2, "e4": 2}, "note": "", "updatedAt": "2026-10-25T13:00:00Z", "id": "Fall-2025-Q"}, {"name": "ETA U", "term": "Fall 2025", "school": "", "grade": "Grade 2", "date": "2025-10-28", "scores": {"d1": 2, "d2": 3, "d3": 3, "d4": 3, "e1": 3, "e2": 2, "e3": 3, "e4": 3}, "note": "", "updatedAt": "2026-10-25T13:00:00Z", "id": "Fall-2025-U"}, {"name": "ETA K", "term": "Fall 2025", "school": "", "grade": "Grade 3", "date": "2025-10-30", "scores": {"d1": 3, "d2": 3, "d3": 3, "d4": 3, "e1": 3, "e2": 3, "e3": 2, "e4": 3}, "note": "", "updatedAt": "2026-10-25T13:00:00Z", "id": "Fall-2025-K"}, {"name": "ETA P", "term": "Fall 2025", "school": "", "grade": "Grade 2", "date": "2025-10-31", "scores": {"d1": 2, "d2": 3, "d3": 3, "d4": 2, "e1": 2, "e2": 2, "e3": 2, "e4": 1}, "note": "", "updatedAt": "2026-10-25T13:00:00Z", "id": "Fall-2025-P"}, {"name": "ETA N", "term": "Fall 2025", "school": "", "grade": "Grade 4", "date": "2025-11-06", "scores": {"d1": 3, "d2": 3, "d3": 3, "d4": 3, "e1": 3, "e2": 3, "e3": 2, "e4": 3}, "note": "", "updatedAt": "2026-10-25T13:00:00Z", "id": "Fall-2025-N"}, {"name": "ETA J", "term": "Fall 2025", "school": "", "grade": "Grade 3", "date": "2025-11-10", "scores": {"d1": 3, "d2": 2, "d3": 3, "d4": 2, "e1": 2, "e2": 2, "e3": 2, "e4": 3}, "note": "", "updatedAt": "2026-10-25T13:00:00Z", "id": "Fall-2025-J"}, {"name": "ETA B", "term": "Fall 2025", "school": "", "grade": "Grade 4", "date": "2025-11-14", "scores": {"d1": 3, "d2": 3, "d3": 3, "d4": 3, "e1": 3, "e2": 3, "e3": 2, "e4": 3}, "note": "", "updatedAt": "2026-10-25T13:00:00Z", "id": "Fall-2025-B"}, {"name": "ETA C", "term": "Fall 2025", "school": "", "grade": "Grade 4", "date": "2025-11-18", "scores": {"d1": 3, "d2": 3, "d3": 3, "d4": 3, "e1": 3, "e2": 3, "e3": 3, "e4": 3}, "note": "", "updatedAt": "2026-10-25T13:00:00Z", "id": "Fall-2025-C"}, {"name": "ETA V", "term": "Spring 2026", "school": "", "grade": "Grade 5", "date": "2026-03-17", "scores": {"d1": 3, "d2": 3, "d3": 3, "d4": 3, "e1": 2, "e2": 3, "e3": 1, "e4": 3}, "note": "", "updatedAt": "2026-10-25T13:00:00Z", "id": "Spring-2026-V"}, {"name": "ETA P", "term": "Spring 2026", "school": "", "grade": "Grade 6", "date": "2026-03-24", "scores": {"d1": 3, "d2": 3, "d3": 2, "d4": 3, "e1": 2, "e2": 2, "e3": 2, "e4": 2}, "note": "", "updatedAt": "2026-10-25T13:00:00Z", "id": "Spring-2026-P"}, {"name": "ETA B", "term": "Spring 2026", "school": "", "grade": "Grade 3", "date": "2026-03-30", "scores": {"d1": 3, "d2": 3, "d3": 3, "d4": 3, "e1": 3, "e2": 3, "e3": 3, "e4": 3}, "note": "", "updatedAt": "2026-10-25T13:00:00Z", "id": "Spring-2026-B"}, {"name": "ETA D", "term": "Spring 2026", "school": "", "grade": "Grade 1–2", "date": "2026-04-07", "scores": {"d1": 3, "d2": 3, "d3": 3, "d4": 3, "e1": 3, "e2": 3, "e3": 3, "e4": 3}, "note": "", "updatedAt": "2026-10-25T13:00:00Z", "id": "Spring-2026-D"}, {"name": "ETA S", "term": "Spring 2026", "school": "", "grade": "Lower grades", "date": "2026-04-08", "scores": {"d1": 2, "d2": 2, "d3": 1, "d4": 2, "e1": 2, "e2": 1, "e3": 1, "e4": 3}, "note": "", "updatedAt": "2026-10-25T13:00:00Z", "id": "Spring-2026-S"}, {"name": "ETA A", "term": "Spring 2026", "school": "", "grade": "Grade 5", "date": "2026-04-09", "scores": {"d1": 3, "d2": 3, "d3": 3, "d4": 3, "e1": 3, "e2": 3, "e3": 2, "e4": 3}, "note": "", "updatedAt": "2026-10-25T13:00:00Z", "id": "Spring-2026-A"}, {"name": "ETA E", "term": "Spring 2026", "school": "", "grade": "Grade 3", "date": "2026-04-10", "scores": {"d1": 3, "d2": 3, "d3": 3, "d4": 3, "e1": 3, "e2": 3, "e3": 3, "e4": 3}, "note": "", "updatedAt": "2026-10-25T13:00:00Z", "id": "Spring-2026-E"}, {"name": "ETA C", "term": "Spring 2026", "school": "", "grade": "Grade 5", "date": "2026-04-13", "scores": {"d1": 3, "d2": 3, "d3": 3, "d4": 3, "e1": 3, "e2": 3, "e3": 3, "e4": 3}, "note": "", "updatedAt": "2026-10-25T13:00:00Z", "id": "Spring-2026-C"}, {"name": "ETA Q", "term": "Spring 2026", "school": "", "grade": "Grade 5–6", "date": "2026-04-20", "scores": {"d1": 3, "d2": 3, "d3": 3, "d4": 3, "e1": 3, "e2": 3, "e3": 2, "e4": 3}, "note": "", "updatedAt": "2026-10-25T13:00:00Z", "id": "Spring-2026-Q"}, {"name": "ETA K", "term": "Spring 2026", "school": "", "grade": "", "date": "2026-04-21", "scores": {"d1": 3, "d2": 3, "d3": 2, "d4": 3, "e1": 3, "e2": 3, "e3": 3, "e4": 3}, "note": "", "updatedAt": "2026-10-25T13:00:00Z", "id": "Spring-2026-K"}, {"name": "ETA J", "term": "Spring 2026", "school": "", "grade": "Grade 2", "date": "2026-04-22", "scores": {"d1": 3, "d2": 2, "d3": 3, "d4": 2, "e1": 3, "e2": 2, "e3": 2, "e4": 3}, "note": "", "updatedAt": "2026-10-25T13:00:00Z", "id": "Spring-2026-J"}, {"name": "ETA N", "term": "Spring 2026", "school": "", "grade": "Grade 2", "date": "2026-04-24", "scores": {"d1": 3, "d2": 3, "d3": 3, "d4": 3, "e1": 3, "e2": 3, "e3": 3, "e4": 3}, "note": "", "updatedAt": "2026-10-25T13:00:00Z", "id": "Spring-2026-N"}, {"name": "ETA I", "term": "Spring 2026", "school": "", "grade": "Grade 3", "date": "2026-05-08", "scores": {"d1": 3, "d2": 3, "d3": 3, "d4": 3, "e1": 3, "e2": 3, "e3": 3, "e4": 3}, "note": "", "updatedAt": "2026-10-25T13:00:00Z", "id": "Spring-2026-I"}, {"name": "ETA U", "term": "Spring 2026", "school": "", "grade": "Grade 2", "date": "2026-04-30", "scores": {"d1": 3, "d2": 3, "d3": 3, "d4": 3, "e1": 3, "e2": 3, "e3": 3, "e4": 3}, "note": "", "updatedAt": "2026-10-25T13:00:00Z", "id": "Spring-2026-U"}];
+const KEY='ntp-obs-public-v1';const AKEY='ntp-obs-anon';
+function load(){try{const v=localStorage.getItem(KEY);if(v)return JSON.parse(v)}catch(e){}return SEED.map(r=>JSON.parse(JSON.stringify(r)))}
+function persist(){try{localStorage.setItem(KEY,JSON.stringify(rows))}catch(e){}}
+let rows=load(); let db=true; let editing=null; let term='';
+const $=id=>document.getElementById(id);
+let anon=false;
+function codeMap(){const names=[...new Set(rows.map(r=>r.name))].sort();const m={};names.forEach((n,i)=>{let s='',k=i;do{s=String.fromCharCode(65+k%26)+s;k=Math.floor(k/26)-1}while(k>=0);m[n]='ETA '+s});return m}
+let CODES={};
+const dn=r=>anon?(CODES[r.name]||'ETA'):r.name;
+const ds=r=>anon?'':(r.school||'');
+
+D.forEach(([,t])=>{const li=document.createElement('li');li.textContent=t;$('rubricD').appendChild(li)});
+E.forEach(([,t])=>{const li=document.createElement('li');li.textContent=t;$('rubricE').appendChild(li)});
+function buildInd(fs,list){list.forEach(([k,t])=>{
+  const w=document.createElement('div');w.className='ind';
+  const s=document.createElement('span');s.className='t';s.textContent=t;w.appendChild(s);
+  const g=document.createElement('span');g.className='seg';g.setAttribute('role','radiogroup');g.setAttribute('aria-label',t);
+  [1,2,3].forEach(v=>{const l=document.createElement('label');const i=document.createElement('input');i.type='radio';i.name=k;i.value=v;i.id=k+'_'+v;
+    const sp=document.createElement('span');sp.textContent=v+' '+LEVEL[v-1];l.append(i,sp);g.appendChild(l)});
+  w.appendChild(g);fs.appendChild(w)})}
+buildInd($('fsD'),D);buildInd($('fsE'),E);
+
+const sum=(s,keys)=>keys.reduce((a,[k])=>a+(Number(s&&s[k])||0),0);
+const scoreD=r=>sum(r.scores,D), scoreE=r=>sum(r.scores,E);
+function quad(r){const hd=scoreD(r)>=8,he=scoreE(r)>=8;return hd&&he?1:(!hd&&he?2:(hd&&!he?3:4))}
+function termKey(t){const s=String(t||'');const m=s.match(/(\d{4})/);if(!m)return 0;return Number(m[1])*2+(/fall|秋/i.test(s)?1:0)}
+
+function terms(){return [...new Set(rows.map(r=>r.term).filter(Boolean))].sort((a,b)=>termKey(b)-termKey(a))}
+function renderTerms(){
+  const ts=terms(); const sel=$('term'); const prev=term;
+  sel.innerHTML='';
+  ts.forEach(t=>{const o=document.createElement('option');o.value=t;o.textContent=t;sel.appendChild(o)});
+  const all=document.createElement('option');all.value='__all';all.textContent='All semesters';sel.appendChild(all);
+  term=ts.includes(prev)||prev==='__all'?prev:(ts[0]||'__all'); sel.value=term;
+  const dl=$('termList');dl.innerHTML='';ts.forEach(t=>{const o=document.createElement('option');o.value=t;dl.appendChild(o)});
+}
+function current(){return rows.filter(r=>term==='__all'||r.term===term)}
+
+function render(){
+  CODES=codeMap();renderCompare();
+  const list=current().slice().sort((a,b)=>quad(a)-quad(b)||(scoreD(b)+scoreE(b))-(scoreD(a)+scoreE(a)));
+  // counts
+  const c=$('counts');c.innerHTML='';
+  [1,2,3,4].forEach(q=>{const d=document.createElement('div');d.className='count '+Q[q][1];
+    const b=document.createElement('b');b.textContent=list.filter(r=>quad(r)===q).length;
+    const s=document.createElement('span');s.textContent=Q[q][0];d.append(b,s);c.appendChild(d)});
+  renderChart(list);
+  // roster
+  const ro=$('roster');ro.innerHTML='';
+  if(!list.length){const p=document.createElement('p');p.className='empty';p.textContent='No observations for this semester yet.';ro.appendChild(p);return}
+  list.forEach(r=>{
+    const row=document.createElement('div');row.className='row';row.tabIndex=0;row.setAttribute('role','button');
+    const who=document.createElement('div');who.className='who';
+    const b=document.createElement('b');b.textContent=dn(r);
+    const sm=document.createElement('small');sm.textContent=[ds(r),r.grade,term==='__all'?r.term:''].filter(Boolean).join('・');
+    who.append(b,sm);
+    const prev=rows.filter(x=>x.name===r.name&&termKey(x.term)<termKey(r.term)).sort((a,b)=>termKey(b.term)-termKey(a.term))[0];
+    if(prev){const t=document.createElement('div');t.className='trend';t.textContent=prev.term+': '+Q[quad(prev)][0].slice(0,1)+' → now: '+Q[quad(r)][0].slice(0,1);who.appendChild(t)}
+    const nd=document.createElement('span');nd.className='num';nd.textContent=scoreD(r);
+    const ne=document.createElement('span');ne.className='num';ne.textContent=scoreE(r);
+    const p=document.createElement('span');p.className='pill '+Q[quad(r)][1];p.textContent=Q[quad(r)][0];
+    row.append(who,nd,ne,p);
+    row.addEventListener('click',()=>openEditor(r));
+    row.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openEditor(r)}});
+    ro.appendChild(row)});
+}
+
+function renderChart(list){
+  const W=640,H=540,L=78,T=16,R=16,B=64,pw=W-L-R,ph=H-T-B;
+  const x=v=>L+(v-3.5)/9*pw, y=v=>T+(12.5-v)/9*ph;
+  const NS='http://www.w3.org/2000/svg';
+  const svg=document.createElementNS(NS,'svg');svg.setAttribute('viewBox',`0 0 ${W} ${H}`);svg.setAttribute('role','img');
+  svg.setAttribute('aria-label','ETA performance quadrant chart');
+  const el=(n,a,txt)=>{const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);if(txt!=null)e.textContent=txt;svg.appendChild(e);return e};
+  const css=v=>getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+  const mx=x(8),my=y(8);
+  el('rect',{x:L,y:T,width:mx-L,height:my-T,fill:css('--q2')});
+  el('rect',{x:mx,y:T,width:L+pw-mx,height:my-T,fill:css('--q1')});
+  el('rect',{x:L,y:my,width:mx-L,height:T+ph-my,fill:css('--q4')});
+  el('rect',{x:mx,y:my,width:L+pw-mx,height:T+ph-my,fill:css('--q3')});
+  for(let v=4;v<=12;v+=2){
+    el('text',{x:x(v),y:T+ph+22,'text-anchor':'middle','font-size':14,fill:css('--muted'),'font-family':'sans-serif'},v);
+    el('text',{x:L-10,y:y(v)+5,'text-anchor':'end','font-size':14,fill:css('--muted'),'font-family':'sans-serif'},v);
+  }
+  el('line',{x1:mx,y1:T,x2:mx,y2:T+ph,stroke:css('--surface'),'stroke-width':3});
+  el('line',{x1:L,y1:my,x2:L+pw,y2:my,stroke:css('--surface'),'stroke-width':3});
+  el('line',{x1:L,y1:T+ph,x2:L+pw,y2:T+ph,stroke:css('--ink'),'stroke-width':1.5});
+  el('line',{x1:L,y1:T,x2:L,y2:T+ph,stroke:css('--ink'),'stroke-width':1.5});
+  el('text',{x:L+pw,y:H-10,'text-anchor':'end','font-size':19,'font-weight':700,fill:css('--ink'),'font-family':'sans-serif'},'Lesson Design →');
+  el('text',{x:22,y:T+ph/2,'text-anchor':'middle','font-size':19,'font-weight':700,fill:css('--ink'),'font-family':'sans-serif',transform:'rotate(-90 22 '+(T+ph/2)+')'},'Student Engagement →');
+  const qt=(xx,yy,anchor,q)=>el('text',{x:xx,y:yy,'text-anchor':anchor,'font-size':15,'font-weight':700,fill:css('--'+Q[q][1]+'ink'),'font-family':'sans-serif'},Q[q][0]);
+  qt(L+10,T+26,'start',2);qt(mx+10,T+ph-(T+ph-my)-12,'start',1);qt(L+10,T+ph-12,'start',4);qt(L+pw-10,T+ph-12,'end',3);
+  // one dot per score point; size shows how many share it
+  const groups={};list.forEach(r=>{const k=scoreD(r)+','+scoreE(r);(groups[k]=groups[k]||[]).push(r)});
+  const pts=Object.values(groups).map(g=>({g,cx:x(scoreD(g[0])),cy:y(scoreE(g[0]))}));
+  pts.sort((p1,p2)=>p1.cy-p2.cy||p1.cx-p2.cx);
+  const placed=[];
+  pts.forEach(({g,cx,cy})=>{
+    const r0=g[0],ink=css('--'+Q[quad(r0)][1]+'ink'),rad=g.length>1?Math.min(22,8+g.length*2):6;
+    const gEl=document.createElementNS(NS,'g');gEl.setAttribute('class','dot');gEl.setAttribute('tabindex','0');gEl.setAttribute('role','button');
+    const names=g.map(dn);
+    gEl.setAttribute('aria-label',names.join(', ')+': design '+scoreD(r0)+', engagement '+scoreE(r0));
+    const tt=document.createElementNS(NS,'title');tt.textContent=names.join(', ')+' (design '+scoreD(r0)+' / engagement '+scoreE(r0)+')';gEl.appendChild(tt);
+    const c=document.createElementNS(NS,'circle');c.setAttribute('cx',cx);c.setAttribute('cy',cy);c.setAttribute('r',rad);c.setAttribute('fill',ink);c.setAttribute('fill-opacity',g.length>1?0.85:1);gEl.appendChild(c);
+    if(g.length>1){const n=document.createElementNS(NS,'text');n.setAttribute('x',cx);n.setAttribute('y',cy+5);n.setAttribute('text-anchor','middle');n.setAttribute('font-size',14);n.setAttribute('font-weight',700);n.setAttribute('fill',css('--surface'));n.setAttribute('font-family','sans-serif');n.textContent=g.length;gEl.appendChild(n)}
+    const label=g.length===1?names[0]:(g.length<=2?names.join(', '):names[0]+' +'+(g.length-1)+' more');
+    const left=cx>L+pw-140;let ly=cy+4;
+    while(placed.some(p=>Math.abs(p.x-cx)<120&&Math.abs(p.y-ly)<16))ly+=16;placed.push({x:cx,y:ly});
+    const t=document.createElementNS(NS,'text');t.setAttribute('x',left?cx-rad-6:cx+rad+6);t.setAttribute('y',ly);t.setAttribute('font-size',13);t.setAttribute('font-weight',700);
+    if(left)t.setAttribute('text-anchor','end');t.setAttribute('fill',css('--ink'));t.setAttribute('font-family','sans-serif');t.textContent=label;gEl.appendChild(t);
+    gEl.style.cursor='pointer';
+    const act=()=>{if(g.length===1)openEditor(r0);else setStatus(g.length+' ETAs share this score: '+names.join(', ')+'. Use the roster to open one.');};
+    gEl.addEventListener('click',act);gEl.addEventListener('keydown',e=>{if(e.key==='Enter')act()});
+    svg.appendChild(gEl)});
+  const box=$('chart');box.innerHTML='';box.appendChild(svg);
+}
+
+function liveTotal(){const s=readScores();$('liveTotal').textContent='Design '+sum(s,D)+'/12 · Engagement '+sum(s,E)+'/12';}
+function readScores(){const s={};[...D,...E].forEach(([k])=>{const c=document.querySelector(`input[name="${k}"]:checked`);s[k]=c?Number(c.value):0});return s}
+$('form').addEventListener('change',liveTotal);
+
+let pending=null;
+function openEditor(r,pre){
+  editing=r||null; pending=pre||null;
+  $('aiBox').hidden=!pre;
+  if(pre){const ul=$('aiReasons');ul.innerHTML='';[...D,...E].forEach(([k,t])=>{const why=pre.reasons&&pre.reasons[k];if(!why)return;const li=document.createElement('li');li.textContent=t+'：'+why;ul.appendChild(li)})}
+  $('formTitle').textContent=r?'Edit: '+dn(r):'Add observation';
+  $('f_name').value=r?r.name:'';$('f_term').value=r?r.term:(term!=='__all'&&term?term:'');
+  $('f_school').value=r?ds(r):'';$('f_name').disabled=!!(anon&&r);$('f_school').disabled=!!(anon&&r);if(anon&&r)$('f_name').value=dn(r);$('f_grade').value=r?r.grade||'':'';$('f_date').value=r?r.date||'':'';
+  $('f_note').value=r?r.note||'':'';
+  [...D,...E].forEach(([k])=>{const v=r&&r.scores?r.scores[k]:0;document.querySelectorAll(`input[name="${k}"]`).forEach(i=>i.checked=Number(i.value)===v)});
+  if(pre){
+    if(pre.name)$('f_name').value=pre.name; if(pre.term)$('f_term').value=pre.term;
+    if(pre.school)$('f_school').value=pre.school; if(pre.grade)$('f_grade').value=pre.grade;
+    if(pre.date)$('f_date').value=pre.date; if(pre.note)$('f_note').value=pre.note;
+    [...D,...E].forEach(([k])=>{const v=Number(pre.scores&&pre.scores[k]);document.querySelectorAll(`input[name="${k}"]`).forEach(i=>i.checked=Number(i.value)===v)});
+    $('formTitle').textContent=(r?'Update: ':'Import: ')+(pre.name||'New record');
+  }
+  $('delBtn').hidden=!r;$('delConfirm').hidden=true;$('formErr').hidden=true;
+  liveTotal();$('overlay').hidden=false;$('f_name').focus();
+}
+function close(){$('overlay').hidden=true;editing=null}
+$('cancelBtn').addEventListener('click',close);
+$('overlay').addEventListener('click',e=>{if(e.target===$('overlay'))close()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('overlay').hidden)close()});
+$('addBtn').addEventListener('click',()=>openEditor(null));
+$('term').addEventListener('change',e=>{term=e.target.value;render()});
+function err(m){$('formErr').textContent=m;$('formErr').hidden=false}
+
+$('form').addEventListener('submit',async e=>{
+  e.preventDefault();
+  const masked=anon&&editing;const name=masked?editing.name:$('f_name').value.trim(),t=$('f_term').value.trim();
+  if(!name||!t)return err('Please enter the ETA name and semester.');
+  const scores=readScores();
+  if(Object.values(scores).some(v=>!v))return err('Choose a score for all 8 indicators.');
+  const dup=rows.find(r=>r.name===name&&r.term===t&&(!editing||r.id!==editing.id));
+  if(dup)return err('This ETA already has a record for '+t+'. Edit that one instead.');
+  const body={name,term:t,school:masked?(editing.school||''):$('f_school').value.trim(),grade:$('f_grade').value.trim(),date:$('f_date').value,note:$('f_note').value.trim(),scores,updatedAt:new Date().toISOString()};
+  const src=pending||editing||{};
+  if(src.advisor)body.advisor=src.advisor;if(editing&&editing.let)body.let=editing.let;
+  if(src.advisorText)body.advisorText=src.advisorText;
+  if(pending&&pending.reasons)body.reasons=pending.reasons; else if(editing&&editing.reasons)body.reasons=editing.reasons;
+  $('saveBtn').disabled=true;
+  try{
+    if(editing){const i=rows.findIndex(r=>r.id===editing.id);rows[i]=Object.assign({id:editing.id},body)}
+    else rows.push(Object.assign({id:'r'+Date.now().toString(36)},body));
+    persist();term=t;close();renderTerms();render();setStatus('Saved '+(anon?(codeMap()[name]||'record'):name)+' (stored in this browser only).');
+  }catch(x){err(x&&x.code==='quota_exceeded'?'Storage is full; delete older records first.':'Could not save. Please try again.')}
+  finally{$('saveBtn').disabled=false}
+});
+$('delBtn').addEventListener('click',()=>{$('delBtn').hidden=true;$('delConfirm').hidden=false});
+$('delNo').addEventListener('click',()=>{$('delBtn').hidden=false;$('delConfirm').hidden=true});
+$('delYes').addEventListener('click',async()=>{
+  if(!db||!editing)return;
+  const n=dn(editing);rows=rows.filter(r=>r.id!==editing.id);persist();close();renderTerms();render();setStatus('Deleted '+n+' (this browser only).');
+});
+$('copyBtn').addEventListener('click',async()=>{
+  const head=['Semester','ETA','School','Grade','Date',...D.map(d=>d[1]),'Design total',...E.map(d=>d[1]),'Engagement total','Quadrant','Notes'];
+  const lines=[head.join('\t')].concat(current().map(r=>[r.term,dn(r),ds(r),r.grade||'',r.date||'',...D.map(([k])=>r.scores[k]),scoreD(r),...E.map(([k])=>r.scores[k]),scoreE(r),Q[quad(r)][0],(r.note||'').replace(/\s+/g,' ')].join('\t')));
+  try{await navigator.clipboard.writeText(lines.join('\n'));setStatus('Copied '+current().length+' rows — paste into Excel or Google Sheets.')}
+  catch(x){setStatus('Your browser blocked copying; select and copy the roster manually.')}
+});
+function setStatus(m){$('status').textContent=m}
+function avg(a){return a.length?a.reduce((x,y)=>x+y,0)/a.length:NaN}
+const f2=v=>isNaN(v)?'–':v.toFixed(2);
+function renderCompare(){
+  const ts=terms().slice().reverse();const tb=$('cmpTable');tb.innerHTML='';
+  const by=t=>rows.filter(r=>r.term===t);
+  const th=document.createElement('thead');const hr=document.createElement('tr');
+  ['Indicator',...ts.map(t=>t+' (n='+by(t).length+')')].forEach(h=>{const c=document.createElement('th');c.textContent=h;hr.appendChild(c)});th.appendChild(hr);tb.appendChild(th);
+  const body=document.createElement('tbody');
+  const mins=ts.map(t=>Math.min(...[...D,...E].map(([k])=>avg(by(t).map(r=>Number(r.scores[k]))))));
+  [...D,...E].forEach(([k,lab])=>{const tr=document.createElement('tr');const c0=document.createElement('td');c0.textContent=(k[0]==='d'?'Design | ':'Engagement | ')+lab;tr.appendChild(c0);
+    ts.forEach((t,i)=>{const v=avg(by(t).map(r=>Number(r.scores[k])));const c=document.createElement('td');c.textContent=f2(v);if(Math.abs(v-mins[i])<1e-9)c.className='low';tr.appendChild(c)});body.appendChild(tr)});
+  [['Lesson Design total',scoreD],['Student Engagement total',scoreE]].forEach(([lab,fn])=>{const tr=document.createElement('tr');tr.className='tot';const c0=document.createElement('td');c0.textContent=lab+' (4–12)';tr.appendChild(c0);
+    ts.forEach(t=>{const c=document.createElement('td');c.textContent=f2(avg(by(t).map(fn)));tr.appendChild(c)});body.appendChild(tr)});
+  const qr=document.createElement('tr');const q0=document.createElement('td');q0.textContent='① Model teaching (count)';qr.appendChild(q0);
+  ts.forEach(t=>{const c=document.createElement('td');c.textContent=by(t).filter(r=>quad(r)===1).length+' / '+by(t).length;qr.appendChild(c)});body.appendChild(qr);
+  tb.appendChild(body);
+  const pw=$('pairs');pw.innerHTML='';
+  for(let i=0;i+1<ts.length;i++){const a=ts[i],b=ts[i+1];const shared=by(a).filter(r=>by(b).some(x=>x.name===r.name));if(shared.length<3)continue;
+    const diffs=shared.map(r=>{const n=by(b).find(x=>x.name===r.name);return scoreD(n)+scoreE(n)-scoreD(r)-scoreE(r)});
+    const up=diffs.filter(d=>d>0).length,eq=diffs.filter(d=>d===0).length,dn_=diffs.filter(d=>d<0).length,m=avg(diffs);
+    const ceil=shared.filter(r=>scoreD(r)+scoreE(r)===24&&diffs[shared.indexOf(r)]===0).length;
+    const box=document.createElement('div');box.className='pair';
+    const h=document.createElement('b');h.textContent='Same ETAs, '+a+' → '+b+' (n='+shared.length+')';
+    const big=document.createElement('div');big.className='big '+(m>0?'up':m<0?'down':'');big.textContent=(m>0?'+':'')+m.toFixed(2);
+    const s1=document.createElement('small');s1.textContent='Average change in total score (out of 24)';
+    const s2=document.createElement('div');s2.className='note';s2.textContent=up+' improved · '+eq+' unchanged · '+dn_+' declined'+(ceil?' ('+ceil+' of the unchanged scored full marks both semesters)':'');
+    box.append(h,big,s1,s2);pw.appendChild(box)}
+}
+$('anon').checked=false;
+$('anon').addEventListener('change',e=>{anon=e.target.checked;try{localStorage.setItem(AKEY,anon?'1':'0')}catch(x){}render()});
+
+
+renderTerms();render();
+setStatus(rows.length+' observations across '+terms().length+' semesters.');
+$('resetBtn').addEventListener('click',()=>{try{localStorage.removeItem(KEY)}catch(e){}rows=load();term='';renderTerms();render();setStatus('Reset to the original '+rows.length+' records.')});
+matchMedia('(prefers-color-scheme: dark)').addEventListener('change',render);
 })();
 </script>
 
-</body>
-</html>
+</body></html>
