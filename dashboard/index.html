@@ -1,7 +1,5 @@
 <!doctype html><html lang="en"><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <title>Classroom Observation Analytics</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700&display=swap">
 <style>
 /* Layout: score sheet beside a live matrix — the matrix is the summary, the roster is the detail */
 :root{
@@ -9,8 +7,8 @@
   --accent:#C9952E; --green:#2F6B4A;
   --q1:#CFE4D6; --q1ink:#1F5A3A; --q2:#F3E4C0; --q2ink:#7A5208;
   --q3:#E1E6E2; --q3ink:#3E4A44; --q4:#F1D7CC; --q4ink:#8E3A20;
-  --sans:'Noto Sans TC',"PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
-  --serif:'Noto Serif TC',"Songti TC",Georgia,serif;
+  --sans:'Times New Roman',Times,'BiauKai','標楷體','DFKai-SB','Kaiti TC','STKaiti',serif;
+  --serif:'Times New Roman',Times,'BiauKai','標楷體','DFKai-SB','Kaiti TC','STKaiti',serif;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
   --bg:#121A16; --surface:#1A2520; --ink:#E7EDE8; --muted:#A4B3AA; --line:#2E3D35;
@@ -279,16 +277,16 @@ function renderChart(list){
   el('rect',{x:L,y:my,width:mx-L,height:T+ph-my,fill:css('--q4')});
   el('rect',{x:mx,y:my,width:L+pw-mx,height:T+ph-my,fill:css('--q3')});
   for(let v=4;v<=12;v+=2){
-    el('text',{x:x(v),y:T+ph+22,'text-anchor':'middle','font-size':14,fill:css('--muted'),'font-family':'sans-serif'},v);
-    el('text',{x:L-10,y:y(v)+5,'text-anchor':'end','font-size':14,fill:css('--muted'),'font-family':'sans-serif'},v);
+    el('text',{x:x(v),y:T+ph+22,'text-anchor':'middle','font-size':14,fill:css('--muted'),'font-family':'Times New Roman, Times, serif'},v);
+    el('text',{x:L-10,y:y(v)+5,'text-anchor':'end','font-size':14,fill:css('--muted'),'font-family':'Times New Roman, Times, serif'},v);
   }
   el('line',{x1:mx,y1:T,x2:mx,y2:T+ph,stroke:css('--surface'),'stroke-width':3});
   el('line',{x1:L,y1:my,x2:L+pw,y2:my,stroke:css('--surface'),'stroke-width':3});
   el('line',{x1:L,y1:T+ph,x2:L+pw,y2:T+ph,stroke:css('--ink'),'stroke-width':1.5});
   el('line',{x1:L,y1:T,x2:L,y2:T+ph,stroke:css('--ink'),'stroke-width':1.5});
-  el('text',{x:L+pw,y:H-10,'text-anchor':'end','font-size':19,'font-weight':700,fill:css('--ink'),'font-family':'sans-serif'},'Lesson Design →');
-  el('text',{x:22,y:T+ph/2,'text-anchor':'middle','font-size':19,'font-weight':700,fill:css('--ink'),'font-family':'sans-serif',transform:'rotate(-90 22 '+(T+ph/2)+')'},'Student Engagement →');
-  const qt=(xx,yy,anchor,q)=>el('text',{x:xx,y:yy,'text-anchor':anchor,'font-size':15,'font-weight':700,fill:css('--'+Q[q][1]+'ink'),'font-family':'sans-serif'},Q[q][0]);
+  el('text',{x:L+pw,y:H-10,'text-anchor':'end','font-size':19,'font-weight':700,fill:css('--ink'),'font-family':'Times New Roman, Times, serif'},'Lesson Design →');
+  el('text',{x:22,y:T+ph/2,'text-anchor':'middle','font-size':19,'font-weight':700,fill:css('--ink'),'font-family':'Times New Roman, Times, serif',transform:'rotate(-90 22 '+(T+ph/2)+')'},'Student Engagement →');
+  const qt=(xx,yy,anchor,q)=>el('text',{x:xx,y:yy,'text-anchor':anchor,'font-size':15,'font-weight':700,fill:css('--'+Q[q][1]+'ink'),'font-family':'Times New Roman, Times, serif'},Q[q][0]);
   qt(L+10,T+26,'start',2);qt(mx+10,T+ph-(T+ph-my)-12,'start',1);qt(L+10,T+ph-12,'start',4);qt(L+pw-10,T+ph-12,'end',3);
   // one dot per score point; size shows how many share it
   const groups={};list.forEach(r=>{const k=scoreD(r)+','+scoreE(r);(groups[k]=groups[k]||[]).push(r)});
