@@ -2,242 +2,289 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Lin Shr-Shian Portfolio</title>
-<meta name="description" content="Portfolio of Lin Shr-Shian (Miffy): program analytics, social media and research.">
+<meta name="description" content="Portfolio of Lin Shr-Shian (Miffy): program analytics, web, video and research.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quattrocento:wght@400;700&family=Julius+Sans+One&display=swap">
 <style>
-/* Layout: content column on the left, a brick-red profile sidebar pinned on the right (stacks on top on phones). Single light look by choice, matching the reference palette. */
+/* Layout: one full-screen panel per project, image and text block alternating sides, white and pale-grey panels in turn; a pastel sky opener with a small ruled intro block. Single light look by choice. */
 :root{
   color-scheme:light;
-  --bg:#F8F4EC; --card:#FFFDF8; --tile:#ECE5D8; --soft:#FAF6EE; --line:#E5DDCF;
-  --ink:#333333; --head:#111111; --brown:#401E07; --muted:#6E6662;
-  --brick:#A64E4E; --brick-ink:#FFFFFF; --hero:#1F3A5F; --hero-ink:#FFFFFF;
-  --display:'Times New Roman',Times,'BiauKai','標楷體','DFKai-SB','Kaiti TC','STKaiti',serif;
-  --body:'Times New Roman',Times,'BiauKai','標楷體','DFKai-SB','Kaiti TC','STKaiti',serif;
+  --bg:#FFFFFF; --alt:#F7F7F7; --ink:#333333; --teal:#283A39; --muted:#6B6F70; --rule:#333333; --soft-line:#E4E4E4;
+  --serif:'Quattrocento','BiauKai','標楷體','DFKai-SB','Kaiti TC','STKaiti',Georgia,serif;
+  --caps:'Julius Sans One','Quattrocento',Georgia,sans-serif;
+  --shadow:0 5px 20px 1px rgba(0,0,0,.10),0 0 0 1px rgba(0,0,0,.12),inset 0 1px 0 0 rgba(255,255,255,.8);
 }
 *{box-sizing:border-box}
-body{background:var(--bg);color:var(--ink);font-family:var(--body);font-weight:400;font-size:17px;line-height:1.65;margin:0}
-a{color:var(--brick);text-underline-offset:3px}
-a:focus-visible,button:focus-visible{outline:3px solid var(--brown);outline-offset:3px;border-radius:4px}
-h1,h2,h3,h4{font-family:var(--display);font-weight:400;margin:0;line-height:1.2;text-wrap:balance}
+html{scroll-behavior:smooth}
+@media (min-width:900px) and (min-height:640px){html{scroll-snap-type:y proximity}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--serif);font-size:14px;line-height:22px}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:rgba(255,255,255,.9)}
 p{margin:0}
-strong{font-weight:600}
+h1,h2,h3{margin:0;font-weight:400;text-wrap:balance}
+a{color:inherit}
+a:focus-visible,button:focus-visible{outline:2px solid var(--teal);outline-offset:3px}
+.gut{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 
-.page{display:block}
-main{min-width:0;padding-block:40px 56px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:40px}
-.inner{max-width:960px;width:100%;margin:0 auto;display:flex;flex-direction:column;gap:32px}
+/* header */
+header{position:fixed;top:env(safe-area-inset-top,0px);left:0;right:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:26px 18px;background:linear-gradient(rgba(255,255,255,.72),rgba(255,255,255,0))}
+.mark{font-family:var(--caps);font-size:15px;letter-spacing:.06em;text-decoration:none;color:var(--ink);display:flex;align-items:center;gap:10px}
+.mark i{width:14px;height:22px;border:1.5px solid var(--ink);border-right:0;display:block}
+nav{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:6px 22px}
+nav a{font-family:var(--caps);font-size:14px;line-height:15px;color:var(--ink);text-decoration:none;padding-bottom:4px;border-bottom:1px solid transparent}
+nav a:hover,nav a.on{border-bottom-color:var(--ink)}
+@media (max-width:620px){header{padding-block:16px 12px}.mark span{display:none}nav{gap:4px 14px}nav a{font-size:12px}}
 
-/* hero banner: profile centered at the top */
-.hero{background:var(--hero);color:var(--hero-ink);padding-block:52px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
-.hero .in{max-width:760px;margin:0 auto;display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px}
-.hero img{width:140px;height:140px;max-width:100%;border-radius:50%;object-fit:cover;object-position:50% 25%;border:4px solid #FFFFFF}
-.hero h1{font-size:clamp(34px,5vw,44px);color:var(--hero-ink)}
-.hero .tagline{font-family:var(--display);font-style:italic;font-size:20px}
-.hero .bio{font-size:16px;max-width:60ch;opacity:.95}
-.hero .skills{display:flex;flex-wrap:wrap;justify-content:center;gap:8px}
-.hero .skills span{font-size:13px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.4);border-radius:999px;padding:2px 12px}
-.hero .contact{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:10px;font-size:15px}
-.hero .email{user-select:all}
-.copy{font:inherit;font-size:13px;font-weight:500;border:1px solid var(--hero-ink);background:transparent;color:var(--hero-ink);border-radius:999px;padding:2px 12px;cursor:pointer}
-.copy:hover{background:rgba(255,255,255,.14)}
+/* panels */
+.panel{min-height:100vh;min-height:100svh;display:flex;align-items:center;scroll-snap-align:start;padding-block:96px 72px}
+.panel.alt{background:var(--alt)}
+.row{width:100%;max-width:1110px;margin:0 auto;display:grid;grid-template-columns:350px minmax(0,1fr);gap:72px;align-items:center}
+.row.flip{grid-template-columns:minmax(0,1fr) 350px}
+.row.flip .txt{order:2}
+.row.tall{grid-template-columns:350px minmax(0,1fr)}
+.txt{border-left:1px solid var(--rule);padding:4px 0 4px 16px;display:flex;flex-direction:column;gap:16px;min-width:0}
+.kicker{font-family:var(--caps);font-size:12px;letter-spacing:.08em;color:var(--muted)}
+.txt h2{font-size:40px;line-height:44px;color:var(--ink)}
+.txt p{max-width:46ch}
+.btn{align-self:flex-start;font:inherit;font-size:16px;line-height:20px;color:var(--ink);background:transparent;border:1px solid var(--ink);border-radius:0;padding:8px 16px;cursor:pointer;text-decoration:none}
+.btn:hover{background:var(--ink);color:#FFFFFF}
+.media{display:flex;justify-content:center;min-width:0}
+.media img,.media .viz{display:block;width:100%;max-width:635px;height:auto;border-radius:10px;box-shadow:var(--shadow);background:#FFFFFF}
+.media.tall img{max-width:340px;border-radius:0}
+@media (max-width:900px){
+  .panel{min-height:0;padding-block:72px 56px}
+  .row,.row.flip,.row.tall{grid-template-columns:minmax(0,1fr);gap:28px}
+  .row.flip .txt{order:0}
+  .media img,.media .viz{max-width:100%}
+  .media.tall img{max-width:260px}
+}
 
-/* contents */
-.toc{display:flex;flex-direction:column;gap:14px}
-.toc > h2{font-family:var(--display);font-size:22px;color:var(--brown);text-align:center}
-.tiles{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
-.tile{display:flex;flex-direction:column;gap:6px;padding:16px;border-radius:14px;background:var(--card);border:1px solid var(--line);text-decoration:none;color:var(--ink);min-width:0}
-.tile b{font-family:var(--display);font-weight:500;font-size:19px;color:var(--brown);line-height:1.25}
-.tile span{font-size:13px;color:var(--muted);font-weight:400;line-height:1.45}
-.tile:hover{border-color:var(--brick)}
-.tile:hover b{text-decoration:underline;text-underline-offset:4px}
-@media (max-width:900px){.tiles{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:460px){.tiles{grid-template-columns:1fr}}
+/* opener */
+.hero{position:relative;overflow:hidden;background:
+  radial-gradient(60% 55% at 18% 18%,#BFE1EA 0%,rgba(191,225,234,0) 70%),
+  radial-gradient(50% 50% at 82% 22%,#DCD6F2 0%,rgba(220,214,242,0) 70%),
+  radial-gradient(60% 60% at 75% 85%,#F7D8C6 0%,rgba(247,216,198,0) 72%),
+  radial-gradient(55% 55% at 20% 88%,#F3E6D8 0%,rgba(243,230,216,0) 70%),
+  #EEF2F4;justify-content:center}
+.hero::after{content:"";position:absolute;inset:0;background:radial-gradient(40% 30% at 50% 50%,rgba(255,255,255,.55),rgba(255,255,255,0) 70%);pointer-events:none}
+.intro{position:relative;z-index:1;width:100%;max-width:300px;margin:0 auto;border-left:1px solid #000;padding:2px 0 2px 16px;display:flex;flex-direction:column;gap:8px;color:var(--teal)}
+.intro h1{font-size:40px;line-height:44px}
+.scrollcue{position:absolute;left:50%;bottom:28px;transform:translateX(-50%);font-family:var(--caps);font-size:12px;letter-spacing:.2em;color:var(--teal);z-index:1;text-decoration:none}
 
-.band{height:40px;background:var(--hero);margin-left:calc(-1 * max(16px,env(safe-area-inset-left,0px)));margin-right:calc(-1 * max(16px,env(safe-area-inset-right,0px)))}
-/* about with photo */
-.about{display:block}
-.about img{width:100%;max-width:100%;aspect-ratio:4/3;object-fit:cover;object-position:60% 35%;border-radius:12px;display:block}
-.about .txt{display:flex;flex-direction:column;gap:12px;min-width:0}
-@media (max-width:760px){.about{grid-template-columns:1fr}}
-.feature-title{font-family:var(--display);font-size:20px;color:var(--head);text-align:center}
+/* pathfinders visual */
+.viz{aspect-ratio:3/2;padding:7% 8%;display:flex;flex-direction:column;justify-content:center;gap:22px;background:linear-gradient(135deg,#FBEFE7 0%,#F3E9F6 100%)!important;color:var(--teal)}
+.viz .vk{font-family:var(--caps);font-size:12px;letter-spacing:.08em}
+.viz .bars{display:flex;flex-direction:column;gap:18px}
+.viz .bl{display:flex;justify-content:space-between;font-size:15px;margin-bottom:6px}
+.viz .bl b{font-size:22px;font-variant-numeric:tabular-nums}
+.viz .tr{height:14px;background:rgba(40,58,57,.12);border-radius:7px;overflow:hidden}
+.viz .tr span{display:block;height:100%;background:var(--teal);border-radius:7px}
+.viz .scale{display:flex;justify-content:space-between;font-size:12px;color:var(--muted)}
+.viz .foot{font-size:13px;color:var(--muted)}
 
-/* project cards */
-.section-head{display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center;padding-top:8px}
-.section-head h2{font-size:29px;color:var(--brown)}
-.section-head p{font-size:15px;color:var(--muted)}
-.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:18px}
-.meta{font-size:14px;color:var(--muted);font-weight:400}
-.card h3{font-size:25px;color:var(--head)}
-.zh{font-size:15px;color:var(--muted);font-weight:400;margin-top:-10px}
-.cols > div p + p{margin-top:8px}
-.question{font-family:var(--display);font-style:italic;font-size:19px;color:var(--brown);max-width:60ch}
-.metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));background:var(--soft);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.metric{padding:14px 12px;display:flex;flex-direction:column;gap:2px;min-width:0}
-.metric + .metric{border-left:1px solid var(--line)}
-.metric b{font-family:var(--display);font-weight:500;font-size:27px;color:var(--brown);font-variant-numeric:tabular-nums;line-height:1.2}
-.metric span{font-size:13px;color:var(--muted);font-weight:400}
-@media (max-width:620px){.metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.metric:nth-child(3){border-left:none}.metric:nth-child(n+3){border-top:1px solid var(--line)}}
+/* about */
+.about .media img{max-width:360px;aspect-ratio:4/5;object-fit:cover;object-position:50% 25%}
+.facts{display:flex;flex-direction:column;gap:6px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips span{border:1px solid var(--soft-line);padding:2px 10px;font-size:13px;background:#FFFFFF}
+.email{user-select:all;font-size:16px}
+.copy{font:inherit;font-size:14px;border:1px solid var(--ink);background:transparent;padding:4px 12px;cursor:pointer}
+.copy:hover{background:var(--ink);color:#FFFFFF}
+.mailfix{position:fixed;right:calc(24px + env(safe-area-inset-right,0px));bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:20;width:36px;height:36px;display:grid;place-items:center;color:var(--ink);background:rgba(255,255,255,.75);border-radius:50%}
+footer{text-align:center;font-size:12px;color:var(--muted);padding-block:20px;background:var(--alt)}
+
+/* case-study pop-ups */
+[hidden]{display:none!important}
+body.lock{overflow:hidden}
+.modal{position:fixed;inset:0;z-index:40;background:rgba(40,58,57,.35);overflow:auto;display:flex;justify-content:center;align-items:flex-start;padding-block:max(32px,env(safe-area-inset-top,0px)) 32px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.modal .card{position:relative;width:100%;max-width:860px;background:#FFFFFF;border-radius:10px;box-shadow:var(--shadow);padding:44px 44px 40px;display:flex;flex-direction:column;gap:18px;font-size:15px;line-height:24px}
+@media (max-width:600px){.modal .card{padding:40px 20px 28px}}
+.modal .card > .meta{font-family:var(--caps);font-size:12px;letter-spacing:.08em;color:var(--muted);padding-right:84px}
+.modal h3{font-size:32px;line-height:36px;color:var(--ink);border-left:1px solid var(--rule);padding-left:16px}
+.modal .question{font-style:italic;color:var(--teal);font-size:17px;line-height:26px}
+.modal .label{font-size:16px;font-weight:700;color:var(--ink)}
+.modal .note{font-size:13px;line-height:20px;color:var(--muted)}
+.modal .zh{color:var(--muted);letter-spacing:.08em}
+.modal .x{position:absolute;top:18px;right:18px;font:inherit;font-size:14px;border:1px solid var(--ink);background:#FFFFFF;padding:4px 12px;cursor:pointer}
+.modal .x:hover{background:var(--ink);color:#FFFFFF}
+.metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--soft-line);border-bottom:1px solid var(--soft-line)}
+.metric{padding:12px 12px 12px 0;display:flex;flex-direction:column;gap:2px;min-width:0}
+.metric + .metric{border-left:1px solid var(--soft-line);padding-left:12px}
+.metric b{font-size:24px;line-height:30px;font-weight:700;font-variant-numeric:tabular-nums;color:var(--ink)}
+.metric span{font-size:13px;line-height:18px;color:var(--muted)}
+@media (max-width:620px){.metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.metric:nth-child(3){border-left:none;padding-left:0}.metric:nth-child(n+3){border-top:1px solid var(--soft-line)}}
 .cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
 .cols > div{min-width:0;display:flex;flex-direction:column;gap:8px}
 @media (max-width:700px){.cols{grid-template-columns:1fr}}
-.label{font-size:12px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--brick)}
-ol,ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px}
-.note{font-size:14px;color:var(--muted);max-width:70ch}
-.btn{align-self:flex-start;display:inline-flex;gap:8px;background:var(--brick);color:var(--brick-ink);text-decoration:none;font-weight:500;font-size:15px;padding:9px 18px;border-radius:999px}
-.btn:hover{filter:brightness(1.08)}
-
-.reel{display:grid;grid-template-columns:190px minmax(0,1fr);gap:28px;align-items:start}
-.reel .cover{position:relative;display:block;width:100%;max-width:190px;border-radius:12px;overflow:hidden}
-.reel .cover img{display:block;width:100%;height:auto;aspect-ratio:373/666;max-width:100%;object-fit:cover}
-.reel .cover::after{content:"▶";position:absolute;left:12px;bottom:12px;width:40px;height:40px;border-radius:50%;background:rgba(0,0,0,.55);color:#fff;display:grid;place-items:center;font-size:15px}
-.reel .body{display:flex;flex-direction:column;gap:18px;min-width:0}
-@media (max-width:640px){.reel{grid-template-columns:1fr}}
-blockquote{margin:0;padding:4px 0 4px 16px;border-left:3px solid var(--brick);font-family:var(--display);font-style:italic;font-size:18px;color:var(--brown)}
-.caption-tags{font-size:13px;color:var(--muted);font-weight:400}
+.modal ol,.modal ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px}
+.modal .btn{margin-top:4px}
+.reel{display:grid;grid-template-columns:170px minmax(0,1fr);gap:24px;align-items:start}
+.reel .cover{display:block;max-width:170px}
+.reel .cover img{display:block;width:100%;height:auto;max-width:100%}
+.reel .body{display:flex;flex-direction:column;gap:16px;min-width:0}
+@media (max-width:620px){.reel{grid-template-columns:1fr}}
+blockquote{margin:0;padding-left:14px;border-left:1px solid var(--rule);font-style:italic;font-size:18px;color:var(--teal)}
+.caption-tags{font-size:13px;color:var(--muted)}
 .bar{display:flex;flex-direction:column;gap:6px}
-.track{display:flex;height:12px;border-radius:6px;overflow:hidden;background:var(--tile)}
-.seg1{background:#C9B8B0}
-.seg2{background:var(--brick)}
-.legend{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.track{display:flex;height:10px;overflow:hidden;background:var(--alt)}
+.seg1{background:#C9CFCF}.seg2{background:var(--teal)}
+.legend{display:flex;justify-content:space-between;font-size:13px;color:var(--muted)}
+.bar-wrap{display:flex;flex-direction:column;gap:8px}
 
-footer{text-align:center;display:flex;flex-direction:column;gap:6px;padding-top:8px}
-footer h4{font-size:19px;color:var(--head)}
-footer p{font-size:13px;color:var(--muted)}
-@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+.opener{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;gap:28px;flex-wrap:wrap}
+.opener .intro{margin:0;max-width:340px}
+.intro .tagline{font-style:italic;font-size:17px;line-height:25px}
+.avatar{width:132px;height:132px;max-width:100%;border-radius:50%;object-fit:cover;object-position:50% 25%;border:3px solid #FFFFFF;box-shadow:0 6px 20px rgba(0,0,0,.12)}
+@media (max-width:620px){.opener{flex-direction:column;gap:20px}.avatar{width:112px;height:112px}}
+.about .row{grid-template-columns:minmax(0,1fr);gap:0;align-items:start}
+.about .side{display:flex;flex-direction:column;gap:24px;min-width:0}
+.about .blk{display:flex;flex-direction:column;gap:8px}
+.about .blk .copy{align-self:flex-start}
+.about .txt p{max-width:60ch}
+.about .row{max-width:720px}
+.about .txt p{max-width:none}
+.panel.about{min-height:70vh}
+@media (max-width:900px){.about .row{grid-template-columns:minmax(0,1fr);gap:32px}}
 
-/* program analytics: two summary cards, full case study in a pop-up */
-.pcards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
-.pcards.single{grid-template-columns:minmax(0,1fr);width:100%;max-width:472px;margin:0 auto}
-@media (max-width:700px){.pcards{grid-template-columns:1fr}}
-.pcard{font:inherit;text-align:left;cursor:pointer;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px;color:var(--ink);min-width:0}
-.pcard:hover{border-color:var(--brick)}
-.pcard:focus-visible{outline:3px solid var(--brown);outline-offset:3px}
-.pcard h3{font-size:21px;color:var(--head)}
-.pcard .question{font-size:16px}
-.pcard .big{font-family:var(--display);font-size:30px;font-weight:500;color:var(--brick);line-height:1.1;font-variant-numeric:tabular-nums}
-.pcard .big small{display:block;font-family:var(--body);font-size:13px;font-weight:400;color:var(--muted);margin-top:4px}
-.pcard .more{margin-top:auto;font-size:14px;font-weight:600;color:var(--brick)}
-.modal{position:fixed;inset:0;z-index:30;background:rgba(20,24,30,.5);overflow:auto;display:flex;justify-content:center;align-items:flex-start;padding-block:max(24px,env(safe-area-inset-top,0px)) 24px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
-.modal .card{max-width:860px;width:100%;position:relative}
-.modal .x{position:absolute;top:14px;right:14px;font:inherit;font-size:14px;font-weight:500;background:var(--soft);border:1px solid var(--line);color:var(--ink);border-radius:999px;padding:4px 14px;cursor:pointer}
-body.lock{overflow:hidden}
-[hidden]{display:none!important}
-.modal .card > .meta{padding-right:84px}
-
-/* emphasis: black bold, 1.5x body size */
-.label{font-size:18px;font-weight:700;letter-spacing:0;text-transform:none;color:var(--head);line-height:1.3}
-.pcard .big{font-family:var(--body);font-size:17.75px;font-weight:700;color:var(--head)}
-.pcard .more{color:#A64E4E;font-weight:700}
-a{color:var(--head);font-weight:600}
-.btn{color:var(--brick-ink)}
+.contact .row{grid-template-columns:minmax(0,1fr) 420px;gap:72px;align-items:center;max-width:1040px}
+.contact .side,.contact .blk{display:flex;flex-direction:column;gap:10px;min-width:0}
+.contact .copy{align-self:flex-start}
+.panel.contact{min-height:60vh}
+@media (max-width:900px){.contact .row{grid-template-columns:minmax(0,1fr);gap:32px}}
+footer{background:var(--bg)}
 </style>
 </head>
 <body>
 
-<div class="page">
-  <header class="hero">
-    <div class="in">
-      <img src="assets/lin-shr-shian.jpg" alt="Portrait of Lin Shr-Shian">
+<header class="gut">
+  <a class="mark" href="#top" aria-label="Lin Shr-Shian, back to top"><i aria-hidden="true"></i><span>Lin Shr-Shian</span></a>
+  <nav aria-label="Sections">
+    <a href="#about">About</a>
+    <a href="#analytics">Analytics</a>
+    <a href="#web">Web</a>
+    <a href="#video">Video</a>
+    <a href="#research">Research</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<main>
+  <section class="panel hero gut" id="top">
+    <div class="opener">
+    <img class="avatar" src="assets/lin-shr-shian.jpg" alt="Portrait of Lin Shr-Shian" width="652" height="843">
+    <div class="intro">
       <h1>Lin Shr-Shian</h1>
       <p class="tagline">Turning program feedback into data, and stories into content.</p>
-      <p class="bio">Program Coordinator at Fulbright Taiwan, supporting American English Teaching Assistants in New Taipei City. B.A. English and B.B.A. International Business, Tamkang University.</p>
-      <div class="skills" aria-label="Skills"><span>Excel / Google Sheets</span><span>Rubric design</span><span>Program evaluation</span><span>Instagram Insights</span><span>Premiere Pro</span><span>English · Mandarin</span></div>
-      <div class="contact">
-        <span class="email" id="email">miffy.5928@gmail.com</span>
+      <p>Program Coordinator at Fulbright Taiwan, supporting U.S.–Taiwan education exchange.</p>
+    </div>
+    </div>
+    <a class="scrollcue" href="#about">Scroll ↓</a>
+  </section>
+
+  <section class="panel alt gut about" id="about">
+    <div class="row">
+      <div class="txt">
+        <p class="kicker">About</p>
+        <p>I coordinate Fulbright Taiwan's English Teaching Assistant program in New Taipei City, working with partner schools, consultants and the teachers themselves. Written reports told us what happened in each classroom but not where to act first, so I started turning that feedback into data.</p>
+        <p>I also build resources for the teachers I support and edit short-form video for Fulbright Taiwan.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="panel gut" id="analytics">
+    <div class="row">
+      <div class="txt">
+        <p class="kicker">Program Analytics · 2025–2026</p>
+        <h2>Classroom Observation Analytics</h2>
+        <p>Designed an 8-indicator rubric and coded 39 consultant observation reports into scores. Comparing the same 14 teachers across semesters, 7 improved, and "clear instructions" was the weakest skill in all three semesters.</p>
+        <button class="btn" type="button" data-open="m-observation">See Case Study</button>
+      </div>
+      <div class="media"><img src="assets/dashboard.jpg" alt="Dashboard with a teaching performance matrix and ETA roster" width="1400" height="933"></div>
+    </div>
+  </section>
+
+  <section class="panel alt gut" id="pathfinders">
+    <div class="row flip">
+      <div class="txt">
+        <p class="kicker">Program Analytics · July 2026</p>
+        <h2>Measuring Student Growth</h2>
+        <p>Coordinated a Silicon Valley study tour for Taiwanese students, then scored 18 reflections on 10 growth dimensions. Students with weaker English grew as much as the rest: 4.25 vs 4.30 out of 5.</p>
+        <button class="btn" type="button" data-open="m-pathfinders">See Case Study</button>
+      </div>
+      <div class="media">
+        <div class="viz" role="img" aria-label="Growth score out of 5: weaker English 4.25, stronger English 4.30">
+          <p class="vk">Average growth score, out of 5</p>
+          <div class="bars">
+            <div><p class="bl"><span>Weaker English · 8 students</span><b>4.25</b></p><div class="tr"><span style="width:85%"></span></div></div>
+            <div><p class="bl"><span>Stronger English · 10 students</span><b>4.30</b></p><div class="tr"><span style="width:86%"></span></div></div>
+            <p class="scale"><span>0</span><span>5</span></p>
+          </div>
+          <p class="foot">Taiwan Global Pathfinders · Ministry of Education × Fulbright Taiwan</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel gut" id="web">
+    <div class="row">
+      <div class="txt">
+        <p class="kicker">Web · 2026</p>
+        <h2>New Taipei ETA Guide</h2>
+        <p>Built a bilingual website that puts program rules, key dates, a district map and daily-life tips in one place for the English Teaching Assistants placed in New Taipei City.</p>
+        <button class="btn" type="button" data-open="m-web">See Project</button>
+      </div>
+      <div class="media"><img src="assets/ntp.jpg" alt="Home page of the New Taipei ETA Guide" width="1400" height="933"></div>
+    </div>
+  </section>
+
+  <section class="panel alt gut" id="video">
+    <div class="row flip">
+      <div class="txt">
+        <p class="kicker">Video · September 2026</p>
+        <h2>Pathfinders Recap Reel</h2>
+        <p>Edited the Reel and wrote its caption for Fulbright Taiwan's Teach in Taiwan account. It reached 2,953 views, and 65.8% of viewers came from outside the account's followers.</p>
+        <button class="btn" type="button" data-open="m-video">See Results</button>
+      </div>
+      <div class="media tall"><img src="assets/reel-cover.jpg" alt="Students in a meeting room at NVIDIA, frame from the Reel" width="373" height="666"></div>
+    </div>
+  </section>
+
+  <section class="panel gut" id="research">
+    <div class="row">
+      <div class="txt">
+        <p class="kicker">Research · 2023–2024</p>
+        <h2>Nostalgia after the American Dream</h2>
+        <p>NSTC-funded undergraduate research on the diasporic identity of immigrants in the film <em>Minari</em>, supervised by Assoc. Prof. I-Fen Wu at Tamkang University.</p>
+        <button class="btn" type="button" data-open="m-research">Read Abstract</button>
+      </div>
+      <div class="media tall"><img src="assets/nstc-cover.jpg" alt="Cover page of the NSTC research report" width="700" height="990"></div>
+    </div>
+  </section>
+
+
+  <section class="panel alt gut contact" id="contact">
+    <div class="row">
+      <div class="txt">
+        <p class="kicker">Contact</p>
+        <h2>Let's connect.</h2>
+        <p><span class="email" id="email">miffy.5928@gmail.com</span></p>
         <button class="copy" id="copyEmail" type="button">Copy email</button>
       </div>
+      <div class="side">
+        <div class="blk"><p class="kicker">Skills</p><div class="chips"><span>Excel / Google Sheets</span><span>Rubric design</span><span>Program evaluation</span><span>Instagram Insights</span><span>Premiere Pro</span><span>English · Mandarin</span></div></div>
+      </div>
     </div>
-  </header>
+  </section>
+</main>
 
-  <main>
-    <div class="inner">
-      <nav class="toc" aria-label="Contents">
-        <h2>Contents</h2>
-        <div class="tiles">
-          <a class="tile" href="#about"><b>About</b><span>My work at Fulbright Taiwan</span></a>
-          <a class="tile" href="#analytics"><b>Program Analytics</b><span>Observation analytics · Pathfinders student growth</span></a>
-          <a class="tile" href="#web"><b>Web</b><span>New Taipei ETA Guide</span></a>
-          <a class="tile" href="#social"><b>Video</b><span>Pathfinders recap Reel</span></a>
-          <a class="tile" href="#research"><b>Research</b><span>NSTC project on <em>Minari</em></span></a>
-        </div>
-      </nav>
-    </div>
+<footer class="gut">Data on this site was collected in my own work at Fulbright Taiwan. Figures as of October 2026.</footer>
 
-    <div class="band" aria-hidden="true"></div>
-
-    <div class="inner">
-      <div class="section-head" id="about"><h2>About</h2></div>
-      <article class="card about">
-        <div class="txt">
-          <p>I coordinate a U.S.–Taiwan exchange program for American English Teaching Assistants in New Taipei City, working with partner schools, consultants and the teachers themselves.</p>
-          <p>Written reports told us what happened in each classroom, but not where to act first, so I started turning that feedback into data: a scoring rubric, a semester-by-semester comparison and a dashboard our team can read at a glance.</p>
-          <p>I also build resources for the teachers I support and edit short-form video for Fulbright Taiwan.</p>
-        </div>
-      </article>
-
-      <div class="section-head" id="analytics"><h2>Program Analytics</h2><p>Turning feedback into decisions</p></div>
-
-            <div class="pcards">
-        <button class="pcard" type="button" data-open="m-observation">
-          <p class="meta">Fulbright Taiwan • New Taipei City • Fall 2025 – Fall 2026</p>
-          <h3>Classroom Observation Analytics</h3>
-          <p class="question">Which teaching skills should our training focus on, and are teachers improving between semesters?</p>
-          <p class="big">7 of 14<small>teachers improved between semesters, from 39 coded observation reports</small></p>
-          <span class="more">View the full case study →</span>
-        </button>
-        <button class="pcard" type="button" data-open="m-pathfinders">
-          <p class="meta">Ministry of Education × Fulbright Taiwan • July 2026</p>
-          <h3>Taiwan Global Pathfinders: Measuring Student Growth</h3>
-          <p class="question">After a study tour to Silicon Valley, how much did students grow, and did students with weaker English benefit as much as the rest?</p>
-          <p class="big">4.25 vs 4.30<small>growth out of 5, weaker vs stronger English, from 18 reflections</small></p>
-          <span class="more">View the full case study →</span>
-        </button>
-      </div>
-
-
-      <div class="section-head" id="web"><h2>Web</h2><p>Resources I built for the teachers I support</p></div>
-
-      <div class="pcards single">
-        <button class="pcard" type="button" data-open="m-web">
-          <p class="meta">Fulbright Taiwan • New Taipei City • 2026</p>
-          <h3>New Taipei ETA Guide</h3>
-          <p class="question">Where can a new English Teaching Assistant find the rules, dates and local know-how for their first year, in one place?</p>
-          <p class="note">Bilingual website: district map, program rules, calendar and daily-life tips</p>
-          <span class="more">View the project →</span>
-        </button>
-      </div>
-
-      <div class="section-head" id="social"><h2>Video</h2><p>Short-form content for Fulbright Taiwan</p></div>
-
-      <div class="pcards single">
-        <button class="pcard" type="button" data-open="m-video">
-          <p class="meta">@fulbrighttaiwan_teachintw • September 14, 2026</p>
-          <h3>Taiwan Global Pathfinders Recap Reel</h3>
-          <p class="question">I edited this Reel and wrote its caption to recap the Silicon Valley study tour I coordinated.</p>
-          <p class="big">2,953 views<small>65.8% of viewers were not followers of the account</small></p>
-          <span class="more">View results and what I learned →</span>
-        </button>
-      </div>
-
-      <div class="section-head" id="research"><h2>Research</h2><p>Undergraduate research, Tamkang University</p></div>
-
-      <div class="pcards single">
-        <button class="pcard" type="button" data-open="m-research">
-          <p class="meta">National Science and Technology Council (NSTC) • Jul 2023 – Feb 2024</p>
-          <h3 style="text-wrap:wrap">Nostalgia after the American&nbsp;Dream:<br>Diasporic Identity of Immigrants<br>in the Film <em>Minari</em></h3>
-          <p class="question">美國夢後的鄉愁：電影《夢想之地》移民者的離散身分認同</p>
-          <p class="big">NSTC-funded<small>undergraduate research project, supervised by Assoc. Prof. I-Fen Wu</small></p>
-          <span class="more">Read the abstract →</span>
-        </button>
-      </div>
-
-      <footer>
-        <h4>Get in touch: miffy.5928@gmail.com</h4>
-        <p>Data on this page was collected in my own work at Fulbright Taiwan. Figures as of October 2026.</p>
-      </footer>
-    </div>
-  </main>
-  <div class="modal" id="m-web" hidden>
+<a class="mailfix" href="#contact" aria-label="Contact"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="M3 6l9 7 9-7"/></svg></a>
+<div class="modal" id="m-web" hidden>
       <article class="card" role="dialog" aria-modal="true" aria-label="New Taipei ETA Guide">
         <p class="meta">Fulbright Taiwan • New Taipei City • 2026</p>
         <h3>New Taipei ETA Guide</h3>
@@ -262,7 +309,7 @@ a{color:var(--head);font-weight:600}
         <button class="x" type="button">Close</button>
       </article>
     </div>
-  <div class="modal" id="m-video" hidden>
+<div class="modal" id="m-video" hidden>
       <article class="card" role="dialog" aria-modal="true" aria-label="Taiwan Global Pathfinders Recap Reel">
         <div class="reel">
           <a class="cover" href="https://www.instagram.com/reel/DdQ0jlZvrUF/" target="_blank" rel="noopener" aria-label="Watch the Reel on Instagram">
@@ -272,7 +319,7 @@ a{color:var(--head);font-weight:600}
             <p class="meta">@fulbrighttaiwan_teachintw • September 14, 2026</p>
             <h3>Taiwan Global Pathfinders Recap Reel</h3>
             <p>I edited this Reel and wrote its caption for Fulbright Taiwan's Teach in Taiwan account, to recap the Silicon Valley study tour I coordinated.</p>
-            <div class="bar-wrap" style="display:flex;flex-direction:column;gap:8px">
+            <div class="bar-wrap">
               <span class="label">Caption</span>
               <blockquote>Real-world impact starts far beyond the classroom.</blockquote>
               <p class="note">The caption walks through the tour's stops, from AI trends with NVIDIA leadership and research at Stanford and ITRI International to entrepreneurship with NATEA and Startup Island Taiwan, and closes by thanking educators, partners and students.</p>
@@ -305,10 +352,10 @@ a{color:var(--head);font-weight:600}
         <button class="x" type="button">Close</button>
       </article>
     </div>
-  <div class="modal" id="m-research" hidden>
+<div class="modal" id="m-research" hidden>
       <article class="card" role="dialog" aria-modal="true" aria-label="Nostalgia after the American Dream">
         <p class="meta">National Science and Technology Council (NSTC) • Jul 2023 – Feb 2024</p>
-        <h3 style="text-wrap:wrap">Nostalgia after the American&nbsp;Dream:<br>Diasporic Identity of Immigrants<br>in the Film <em>Minari</em></h3>
+        <h3>Nostalgia after the American&nbsp;Dream:<br>Diasporic Identity of Immigrants<br>in the Film <em>Minari</em></h3>
         <p class="zh">美國夢後的鄉愁：電影《夢想之地》移民者的離散身分認同</p>
         <p>Competitively funded NSTC undergraduate research project (No. 112-2813-C-032-023-H), conducted independently under the supervision of Assoc. Prof. I-Fen Wu, Department of English, Tamkang University.</p>
         <div class="cols">
@@ -333,7 +380,7 @@ a{color:var(--head);font-weight:600}
         <button class="x" type="button">Close</button>
       </article>
     </div>
-  <div class="modal" id="m-observation" hidden>
+<div class="modal" id="m-observation" hidden>
       <article class="card" role="dialog" aria-modal="true" aria-label="Classroom Observation Analytics">
         <p class="meta">Fulbright Taiwan • New Taipei City • Fall 2025 – Fall 2026</p>
         <h3>Classroom Observation Analytics</h3>
@@ -369,7 +416,7 @@ a{color:var(--head);font-weight:600}
         <button class="x" type="button">Close</button>
       </article>
     </div>
-  <div class="modal" id="m-pathfinders" hidden>
+<div class="modal" id="m-pathfinders" hidden>
       <article class="card" role="dialog" aria-modal="true" aria-label="Taiwan Global Pathfinders">
         <p class="meta">Ministry of Education × Fulbright Taiwan • July 2026</p>
         <h3>Taiwan Global Pathfinders: Measuring Student Growth</h3>
@@ -397,10 +444,7 @@ a{color:var(--head);font-weight:600}
         <p class="note">The full report contains student names and quotes, so it is not posted publicly.</p>
         <button class="x" type="button">Close</button>
       </article>
-    </div>
-</div>
-
-<script>
+    </div><script>
 (function(){
   var b=document.getElementById('copyEmail'),e=document.getElementById('email');
   b.addEventListener('click',function(){
@@ -409,22 +453,23 @@ a{color:var(--head);font-weight:600}
     try{navigator.clipboard.writeText(t).then(function(){b.textContent='Copied';},sel);}catch(x){sel();}
     setTimeout(function(){b.textContent='Copy email';},2000);
   });
-})();
-</script>
-<script>
-(function(){
   var last=null;
-  function open(id){var m=document.getElementById(id);if(!m)return;last=document.activeElement;m.hidden=false;document.body.classList.add('lock');var x=m.querySelector('.x');if(x)x.focus();}
+  function open(id){var m=document.getElementById(id);if(!m)return;last=document.activeElement;m.hidden=false;document.body.classList.add('lock');m.querySelector('.x').focus();}
   function close(m){m.hidden=true;document.body.classList.remove('lock');if(last)last.focus();}
-  document.querySelectorAll('[data-open]').forEach(function(b){b.addEventListener('click',function(){open(b.getAttribute('data-open'))})});
+  document.querySelectorAll('[data-open]').forEach(function(x){x.addEventListener('click',function(){open(x.getAttribute('data-open'))})});
   document.querySelectorAll('.modal').forEach(function(m){
-    m.addEventListener('click',function(e){if(e.target===m)close(m)});
+    m.addEventListener('click',function(ev){if(ev.target===m)close(m)});
     m.querySelector('.x').addEventListener('click',function(){close(m)});
   });
-  document.addEventListener('keydown',function(e){if(e.key==='Escape'){document.querySelectorAll('.modal').forEach(function(m){if(!m.hidden)close(m)})}});
+  document.addEventListener('keydown',function(ev){if(ev.key==='Escape')document.querySelectorAll('.modal').forEach(function(m){if(!m.hidden)close(m)})});
+  var links={};document.querySelectorAll('nav a').forEach(function(a){links[a.getAttribute('href').slice(1)]=a});
+  var map={analytics:'analytics',pathfinders:'analytics',web:'web',video:'video',research:'research',about:'about',contact:'contact'};
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){var k=map[en.target.id];Object.keys(links).forEach(function(id){links[id].classList.toggle('on',id===k)})}})},{rootMargin:'-45% 0px -50% 0px'});
+    document.querySelectorAll('main > section').forEach(function(s){io.observe(s)});
+  }
 })();
 </script>
-
 
 </body>
 </html>
