@@ -21,7 +21,7 @@
 html{scroll-behavior:smooth}
 @media (min-width:900px) and (min-height:640px){html{scroll-snap-type:y proximity}}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--serif);font-size:14px;line-height:22px}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--serif);font-size:16px;line-height:26px}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:rgba(255,255,255,.9)}
 p{margin:0}
 h1,h2,h3{margin:0;font-weight:400;text-wrap:balance}
@@ -46,7 +46,7 @@ nav a:hover,nav a.on{border-bottom-color:var(--ink)}
 .row.flip .txt{order:2}
 .row.tall{grid-template-columns:350px minmax(0,1fr)}
 .txt{border-left:1px solid var(--rule);padding:4px 0 4px 16px;display:flex;flex-direction:column;gap:16px;min-width:0}
-.kicker{font-family:var(--caps);font-size:12px;letter-spacing:.08em;color:var(--muted)}
+.kicker{font-family:var(--caps);font-size:13px;letter-spacing:.08em;color:var(--muted)}
 .txt h2{font-size:40px;line-height:44px;color:var(--ink)}
 .txt p{max-width:46ch}
 .btn{align-self:flex-start;font:inherit;font-size:16px;line-height:20px;color:var(--ink);background:transparent;border:1px solid var(--ink);border-radius:0;padding:8px 16px;cursor:pointer;text-decoration:none}
@@ -89,7 +89,7 @@ nav a:hover,nav a.on{border-bottom-color:var(--ink)}
 .about .media img{max-width:360px;aspect-ratio:4/5;object-fit:cover;object-position:50% 25%}
 .facts{display:flex;flex-direction:column;gap:6px}
 .chips{display:flex;flex-wrap:wrap;gap:6px}
-.chips span{border:1px solid var(--soft-line);padding:2px 10px;font-size:13px;background:#FFFFFF}
+.chips span{border:1px solid var(--soft-line);padding:3px 12px;font-size:15px;background:#FFFFFF}
 .email{user-select:all;font-size:16px}
 .copy{font:inherit;font-size:14px;border:1px solid var(--ink);background:transparent;padding:4px 12px;cursor:pointer}
 .copy:hover{background:var(--ink);color:#FFFFFF}
@@ -100,7 +100,7 @@ footer{text-align:center;font-size:12px;color:var(--muted);padding-block:20px;ba
 [hidden]{display:none!important}
 body.lock{overflow:hidden}
 .modal{position:fixed;inset:0;z-index:40;background:rgba(40,58,57,.35);overflow:auto;display:flex;justify-content:center;align-items:flex-start;padding-block:max(32px,env(safe-area-inset-top,0px)) 32px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
-.modal .card{position:relative;width:100%;max-width:860px;background:#FFFFFF;border-radius:10px;box-shadow:var(--shadow);padding:44px 44px 40px;display:flex;flex-direction:column;gap:18px;font-size:15px;line-height:24px}
+.modal .card{position:relative;width:100%;max-width:860px;background:#FFFFFF;border-radius:10px;box-shadow:var(--shadow);padding:44px 44px 40px;display:flex;flex-direction:column;gap:18px;font-size:16px;line-height:26px}
 @media (max-width:600px){.modal .card{padding:40px 20px 28px}}
 .modal .card > .meta{font-family:var(--caps);font-size:12px;letter-spacing:.08em;color:var(--muted);padding-right:84px}
 .modal h3{font-size:32px;line-height:36px;color:var(--ink);border-left:1px solid var(--rule);padding-left:16px}
@@ -135,10 +135,11 @@ blockquote{margin:0;padding-left:14px;border-left:1px solid var(--rule);font-sty
 .bar-wrap{display:flex;flex-direction:column;gap:8px}
 
 .opener{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;gap:28px;flex-wrap:wrap}
-.opener .intro{margin:0;max-width:340px}
-.intro .tagline{font-style:italic;font-size:17px;line-height:25px}
-.avatar{width:132px;height:132px;max-width:100%;border-radius:50%;object-fit:cover;object-position:50% 25%;border:3px solid #FFFFFF;box-shadow:0 6px 20px rgba(0,0,0,.12)}
-@media (max-width:620px){.opener{flex-direction:column;gap:20px}.avatar{width:112px;height:112px}}
+.opener .intro{margin:0;max-width:380px}
+.intro .tagline{font-style:italic;font-size:19px;line-height:28px}
+.avatar{width:190px;height:190px;max-width:100%;border-radius:50%;object-fit:cover;object-position:50% 25%;border:3px solid #FFFFFF;box-shadow:0 6px 20px rgba(0,0,0,.12)}
+@media (max-width:900px){.panel.hero{min-height:88svh;padding-bottom:104px}}
+@media (max-width:620px){.opener{flex-direction:column;gap:20px}.avatar{width:150px;height:150px}}
 .about .row{grid-template-columns:minmax(0,1fr);gap:0;align-items:start}
 .about .side{display:flex;flex-direction:column;gap:24px;min-width:0}
 .about .blk{display:flex;flex-direction:column;gap:8px}
@@ -174,7 +175,7 @@ footer{background:var(--bg)}
 <main>
   <section class="panel hero gut" id="top">
     <div class="opener">
-    <img class="avatar" src="assets/lin-shr-shian.jpg" alt="Portrait of Lin Shr-Shian" width="652" height="843">
+    <img class="avatar" src="assets/lin-shr-shian.jpg?v=1026b" alt="Portrait of Lin Shr-Shian" width="652" height="843">
     <div class="intro">
       <h1>Lin Shr-Shian</h1>
       <p class="tagline">Turning program feedback into data, and stories into content.</p>
@@ -203,7 +204,7 @@ footer{background:var(--bg)}
         <p>Designed an 8-indicator rubric and coded 39 consultant observation reports into scores. Comparing the same 14 teachers across semesters, 7 improved, and "clear instructions" was the weakest skill in all three semesters.</p>
         <button class="btn" type="button" data-open="m-observation">See Case Study</button>
       </div>
-      <div class="media"><img src="assets/dashboard.jpg" alt="Dashboard with a teaching performance matrix and ETA roster" width="1400" height="933"></div>
+      <div class="media"><img src="assets/dashboard.jpg?v=1026b" alt="Dashboard with a teaching performance matrix and ETA roster" width="1400" height="933"></div>
     </div>
   </section>
 
@@ -237,7 +238,7 @@ footer{background:var(--bg)}
         <p>Built a bilingual website that puts program rules, key dates, a district map and daily-life tips in one place for the English Teaching Assistants placed in New Taipei City.</p>
         <button class="btn" type="button" data-open="m-web">See Project</button>
       </div>
-      <div class="media"><img src="assets/ntp.jpg" alt="Home page of the New Taipei ETA Guide" width="1400" height="933"></div>
+      <div class="media"><img src="assets/ntp.jpg?v=1026b" alt="Home page of the New Taipei ETA Guide" width="1400" height="933"></div>
     </div>
   </section>
 
@@ -249,7 +250,7 @@ footer{background:var(--bg)}
         <p>Edited the Reel and wrote its caption for Fulbright Taiwan's Teach in Taiwan account. It reached 2,953 views, and 65.8% of viewers came from outside the account's followers.</p>
         <button class="btn" type="button" data-open="m-video">See Results</button>
       </div>
-      <div class="media"><img src="assets/nvidia-group.jpg" alt="Taiwan Global Pathfinders group photo with a Fulbright Taiwan banner at NVIDIA headquarters, frame from the Reel" width="1252" height="710"></div>
+      <div class="media"><img src="assets/nvidia-group.jpg?v=1026b" alt="Taiwan Global Pathfinders group photo with a Fulbright Taiwan banner at NVIDIA headquarters, frame from the Reel" width="1252" height="710"></div>
     </div>
   </section>
 
@@ -261,7 +262,7 @@ footer{background:var(--bg)}
         <p>NSTC-funded undergraduate research on the diasporic identity of immigrants in the film <em>Minari</em>, supervised by Assoc. Prof. I-Fen Wu at Tamkang University.</p>
         <button class="btn" type="button" data-open="m-research">Read Abstract</button>
       </div>
-      <div class="media tall"><img src="assets/nstc-cover.jpg" alt="Cover page of the NSTC research report" width="700" height="990"></div>
+      <div class="media tall"><img src="assets/nstc-cover.jpg?v=1026b" alt="Cover page of the NSTC research report" width="700" height="990"></div>
     </div>
   </section>
 
@@ -313,7 +314,7 @@ footer{background:var(--bg)}
       <article class="card" role="dialog" aria-modal="true" aria-label="Taiwan Global Pathfinders Recap Reel">
         <div class="reel">
           <a class="cover" href="https://www.instagram.com/reel/DdQ0jlZvrUF/" target="_blank" rel="noopener" aria-label="Watch the Reel on Instagram">
-            <img src="assets/reel-cover.jpg" alt="Students in a meeting room at NVIDIA, frame from the Reel">
+            <img src="assets/reel-cover.jpg?v=1026b" alt="Students in a meeting room at NVIDIA, frame from the Reel">
           </a>
           <div class="body">
             <p class="meta">@fulbrighttaiwan_teachintw • September 14, 2026</p>
