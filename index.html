@@ -72,6 +72,8 @@ nav a:hover,nav a.on{border-bottom-color:var(--ink)}
 .hero::after{content:"";position:absolute;inset:0;background:radial-gradient(40% 30% at 50% 50%,rgba(255,255,255,.55),rgba(255,255,255,0) 70%);pointer-events:none}
 .intro{position:relative;z-index:1;width:100%;max-width:300px;margin:0 auto;border-left:1px solid #000;padding:2px 0 2px 16px;display:flex;flex-direction:column;gap:8px;color:var(--teal)}
 .intro h1{font-size:40px;line-height:44px}
+.intro .aka{font-size:inherit;white-space:nowrap}
+.opener .intro{max-width:440px}
 .scrollcue{position:absolute;left:50%;bottom:28px;transform:translateX(-50%);font-family:var(--caps);font-size:12px;letter-spacing:.2em;color:var(--teal);z-index:1;text-decoration:none}
 
 /* pathfinders visual */
@@ -135,7 +137,7 @@ blockquote{margin:0;padding-left:14px;border-left:1px solid var(--rule);font-sty
 .bar-wrap{display:flex;flex-direction:column;gap:8px}
 
 .opener{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;gap:28px;flex-wrap:wrap}
-.opener .intro{margin:0;max-width:380px}
+.opener .intro{margin:0;max-width:520px}
 .intro .tagline{font-style:italic;font-size:19px;line-height:28px}
 .avatar{width:190px;height:190px;max-width:100%;border-radius:50%;object-fit:cover;object-position:50% 25%;border:3px solid #FFFFFF;box-shadow:0 6px 20px rgba(0,0,0,.12)}
 @media (max-width:900px){.panel.hero{min-height:88svh;padding-bottom:104px}}
@@ -177,9 +179,9 @@ footer{background:var(--bg)}
     <div class="opener">
     <img class="avatar" src="assets/lin-shr-shian.jpg?v=1026b" alt="Portrait of Lin Shr-Shian" width="652" height="843">
     <div class="intro">
-      <h1>Lin Shr-Shian</h1>
+      <h1><span class="aka">Lin Shr-Shian</span> <span class="aka">(Miffy Lin)</span></h1>
       <p class="tagline">Turning program feedback into data, and stories into content.</p>
-      <p>Program Coordinator at Fulbright Taiwan, supporting U.S.–Taiwan education exchange.</p>
+      <p>Program Coordinator at Fulbright Taiwan, supporting <span style="white-space:nowrap">U.S.–Taiwan</span> education exchange.</p>
     </div>
     </div>
     <a class="scrollcue" href="#about">Scroll ↓</a>
